@@ -1,0 +1,149 @@
+#game {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #000000;
+}
+
+#game #game-content {
+    position: relative;
+    margin: auto auto;
+}
+
+#game #game-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+#game #game-loading .loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #0561cd;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#game * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+}
+
+#game #drawer-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+#game #drawer-container canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#game #scenery-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+#game #scenery-container div.scene {
+    width: 100%;
+    height: 100%;
+}
+
+#game #scenery-container div.scene div.mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+    background-image: url("/boxing/img/main-menu.png");
+    background-position: center center;
+    background-size: auto 100%;
+}
+
+#game #scenery-container div.scene div.content {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 10%;
+}
+
+#game div.button {
+    text-align: center;
+    width: 50%;
+    margin: 0 auto 5% auto;
+    background: #3f7ecd;
+    color: #ffffff;
+    border: 1ex solid transparent;
+    -webkit-border-radius: 10%;
+    -moz-border-radius: 10%;
+    border-radius: 10%;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 100%;
+    line-height: normal;
+}
+
+#game div.button:hover {
+    background: #0561cd;
+}
+
+#game div.title {
+    width: 50%;
+    margin: 0 auto 5% auto;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 150%;
+    line-height: normal;
+    border: 2px solid #ffffff;
+    text-align: center;
+}
+
+#game div.button.control-button {
+    margin: 0 auto 1% auto;
+}
+
+#game div.button.control-button span.key {
+    border: 1ex solid transparent;
+    -webkit-border-radius: 10%;
+    -moz-border-radius: 10%;
+    border-radius: 10%;
+    padding: 0;
+    color: #0561cd;
+    background: #ffffff;
+}
+
+#game div.button.control-button.active {
+    color: #0561cd;
+    background: #ffffff;
+}
+
+#game div.button.control-button.active span.key {
+    color: #ffffff;
+    background: #0561cd;
+}
+
+#game .scene .control-settings {
+    margin: 0 auto 5% auto;
+}
