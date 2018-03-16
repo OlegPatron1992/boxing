@@ -361,7 +361,7 @@ game.drawer = (function (that) {
         that.drawUnit(game.player2, {
             color: that.colors.player2
         });
-        that.canvasContext.globalAlpha = 0.8;
+        that.canvasContext.globalAlpha = 0.5;
         that.drawStats();
         if (game.main.isFrozen()) {
             that.drawFrozenTimeout();
