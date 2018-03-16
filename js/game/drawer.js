@@ -139,20 +139,20 @@ game.drawer = (function (that) {
                 that._drawArm(that.unitSize, 0.2 * unit.animation.getValue() * that.unitSize);
                 that._drawHead();
                 that._drawBrow(unit.animation.getValue());
-                that._drawMuffle(-(0.7 - 0.1 * unit.animation.getValue()) * that.unitSize, (1.1 + 0.1 * unit.animation.getValue()) * that.unitSize, config);
-                that._drawMuffle((0.8 + 0.1 * unit.animation.getValue()) * that.unitSize, (0.9 - 0.1 * unit.animation.getValue()) * that.unitSize, config);
+                that._drawGlove(-(0.7 - 0.1 * unit.animation.getValue()) * that.unitSize, (1.1 + 0.1 * unit.animation.getValue()) * that.unitSize, config);
+                that._drawGlove((0.8 + 0.1 * unit.animation.getValue()) * that.unitSize, (0.9 - 0.1 * unit.animation.getValue()) * that.unitSize, config);
                 break;
             case 'attack':
                 that._drawArm(-that.unitSize, 0.2 * unit.animation.getValue() * that.unitSize);
                 that._drawArm(that.unitSize, -0.2 * unit.animation.getValue() * that.unitSize);
-                that._drawMuffle(-(0.7 - 0.5 * unit.animation.getValue()) * that.unitSize, (1.1 + 2 * unit.animation.getValue()) * that.unitSize, config);
-                that._drawMuffle((0.8 + 0.1 * unit.animation.getValue()) * that.unitSize, (0.9 - 0.5 * unit.animation.getValue()) * that.unitSize, config);
+                that._drawGlove(-(0.7 - 0.5 * unit.animation.getValue()) * that.unitSize, (1.1 + 2 * unit.animation.getValue()) * that.unitSize, config);
+                that._drawGlove((0.8 + 0.1 * unit.animation.getValue()) * that.unitSize, (0.9 - 0.5 * unit.animation.getValue()) * that.unitSize, config);
                 that._drawHead();
                 that._drawBrow(unit.animation.getValue());
                 break;
             case 'idle':
-                that._drawMuffle(-that.unitSize, (-0.5 + unit.animation.getValue()) * 0.1 * that.unitSize, config);
-                that._drawMuffle(that.unitSize, (0.5 - unit.animation.getValue()) * 0.1 * that.unitSize, config);
+                that._drawGlove(-that.unitSize, (-0.5 + unit.animation.getValue()) * 0.1 * that.unitSize, config);
+                that._drawGlove(that.unitSize, (0.5 - unit.animation.getValue()) * 0.1 * that.unitSize, config);
                 that._drawArm(-that.unitSize, 0);
                 that._drawArm(that.unitSize, 0);
                 that._drawHead();
@@ -161,8 +161,8 @@ game.drawer = (function (that) {
             case 'move':
                 that._drawFoot(-that.unitSize * 0.5, (-0.5 + unit.animation.getValue()) * 2 * that.unitSize);
                 that._drawFoot(that.unitSize * 0.5, (0.5 - unit.animation.getValue()) * 2 * that.unitSize);
-                that._drawMuffle(-that.unitSize, (-0.5 + unit.animation.getValue()) * 0.1 * that.unitSize, config);
-                that._drawMuffle(that.unitSize, (0.5 - unit.animation.getValue()) * 0.1 * that.unitSize, config);
+                that._drawGlove(-that.unitSize, (-0.5 + unit.animation.getValue()) * 0.1 * that.unitSize, config);
+                that._drawGlove(that.unitSize, (0.5 - unit.animation.getValue()) * 0.1 * that.unitSize, config);
                 that._drawArm(-that.unitSize, 0);
                 that._drawArm(that.unitSize, 0);
                 that._drawHead();
@@ -185,7 +185,7 @@ game.drawer = (function (that) {
         that.canvasContext.closePath();
     };
 
-    that._drawMuffle = function (x, y, config) {
+    that._drawGlove = function (x, y, config) {
         that.canvasContext.beginPath();
         that.canvasContext.arc(
             x, y,
