@@ -1,7 +1,7 @@
 # boxing
 HTML5 game Boxing
 
-Works with modern browsers, keyboard control
+Works with modern browsers (FF, Chrome), keyboard control
 
 Best compatibility with Chrome
 
