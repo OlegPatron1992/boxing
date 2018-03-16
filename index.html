@@ -2,9 +2,205 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Patron Games - Boxing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link href="./css/site.css" rel="stylesheet">
+    <link href="./css/game.css" rel="stylesheet">
 </head>
 <body>
-$END$
+<div id="game">
+    <div id="game-content" class="hidden">
+        <div id="drawer-container">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div id="scenery-container">
+            <div id="scene-main-menu" class="scene">
+                <div class="mask"></div>
+                <div class="content">
+                    <div class="title">
+                        Main Menu
+                    </div>
+                    <div class="button" onclick="game.scenery.selectMode();">New Game</div>
+                    <div class="button" onclick="game.scenery.settings();">Settings</div>
+                </div>
+            </div>
+            <div id="scene-select-mode" class="scene">
+                <div class="mask"></div>
+                <div class="content">
+                    <div class="title">
+                        Select Mode
+                    </div>
+                    <div class="button" onclick="game.scenery.playerVSBot();">Player VS Bot</div>
+                    <div class="button" onclick="game.scenery.playerVSPlayer();">Player VS Player</div>
+                    <div class="button" onclick="game.scenery.back();">Back</div>
+                </div>
+            </div>
+            <div id="scene-pause-menu" class="scene">
+                <div class="mask"></div>
+                <div class="content">
+                    <div class="title">
+                        Pause
+                    </div>
+                    <div class="button" onclick="game.scenery.resume();">Resume</div>
+                    <div class="button" onclick="game.scenery.selectMode();">New Game</div>
+                    <div class="button" onclick="game.scenery.settings();">Settings</div>
+                </div>
+            </div>
+            <div id="scene-settings" class="scene">
+                <div class="mask"></div>
+                <div class="content">
+                    <div class="title">
+                        Settings
+                    </div>
+                    <div class="button">
+                        <label for="toggle-audio-checkbox">
+                            Audio Effects
+                            <input id="toggle-audio-checkbox" type="checkbox" checked="checked"
+                                   onchange="game.scenery.toggleAudio(this.checked);"/>
+                        </label>
+                    </div>
+                    <div class="button" onclick="game.scenery.toggleFullScreen();">Full Screen</div>
+                    <div class="button" onclick="game.scenery.settingsControl();">Controls</div>
+                    <div class="button" onclick="game.scenery.back();">Back</div>
+                </div>
+            </div>
+            <div id="scene-settings-player1-controls" class="scene">
+                <div class="mask"></div>
+                <div class="content">
+                    <div class="title">
+                        Player Controls
+                    </div>
+                    <div class="control-settings">
+                        <div class="button control-button" data-action="up"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
+                            UP
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="down"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
+                            DOWN
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="left"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
+                            LEFT
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="right"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
+                            RIGHT
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="block"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
+                            BLOCK
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="attack"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
+                            ATTACK
+                            <span class="key"></span>
+                        </div>
+                    </div>
+                    <div class="button" onclick="game.scenery.settingsControl2();">2nd Player Controls</div>
+                    <div class="button" onclick="game.scenery.back();">Back</div>
+                </div>
+            </div>
+            <div id="scene-settings-player2-controls" class="scene">
+                <div class="mask"></div>
+                <div class="content">
+                    <div class="title">
+                        2nd Player Controls
+                    </div>
+                    <div class="control-settings">
+                        <div class="button control-button" data-action="up"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
+                            UP
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="down"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
+                            DOWN
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="left"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
+                            LEFT
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="right"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
+                            RIGHT
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="block"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
+                            BLOCK
+                            <span class="key"></span>
+                        </div>
+                        <div class="button control-button" data-action="attack"
+                             onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
+                            ATTACK
+                            <span class="key"></span>
+                        </div>
+                    </div>
+                    <div class="button" onclick="game.scenery.back();">Back</div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden">
+            <audio id="sound-attack-base">
+                <source src="./audio/attack_base.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="sound-attack-block">
+                <source src="./audio/attack_block.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="sound-attack-dead">
+                <source src="./audio/attack_dead.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="sound-attack-move">
+                <source src="./audio/attack_move.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="sound-ring-bell">
+                <source src="./audio/ring_bell.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+    <div id="game-loading">
+        <div class="loader"></div>
+    </div>
+</div>
+<script src="./js/jquery/jquery-3.3.1.min.js"></script>
+<script src="./js/game/config.js"></script>
+<script src="./js/game/manager.js"></script>
+<script src="./js/game/fix.js"></script>
+<script src="./js/game/drawer.js"></script>
+<script src="./js/game/bot.js"></script>
+<script src="./js/game/main.js"></script>
+<script src="./js/game/scenery.js"></script>
+<script src="./js/game/sound.js"></script>
+<script src="./js/game/keyboard.js"></script>
+<script src="./js/game/create/effect.js"></script>
+<script src="./js/game/create/scene.js"></script>
+<script src="./js/game/create/control.js"></script>
+<script src="./js/game/create/unit.js"></script>
+<script src="./js/game/create/animation.js"></script>
+<script type="application/javascript">
+    $(document).ready(function () {
+        'use strict';
+
+        $(window).on('keydown', function (event) {
+            game.keyboard.keyDown(event.keyCode);
+        });
+        $(window).on('keyup', function (event) {
+            game.keyboard.keyUp(event.keyCode);
+        });
+        $(window).on('resize', function () {
+            game.main.onResize();
+        });
+
+        game.main.init();
+    });
+</script>
 </body>
 </html>
