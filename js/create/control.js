@@ -11,38 +11,36 @@ game.createControl = function () {
             if (enable) {
                 if (['left', 'right'].indexOf(direction) > -1) {
                     if (direction == 'left') {
-                        index = this.move.indexOf('right');
+                        index = that.move.indexOf('right');
                         if (index > -1) {
-                            this.move.splice(index, 1);
+                            that.move.splice(index, 1);
                         }
                     } else {
-                        index = this.move.indexOf('left');
+                        index = that.move.indexOf('left');
                         if (index > -1) {
-                            this.move.splice(index, 1);
+                            that.move.splice(index, 1);
                         }
                     }
                 } else {
                     if (direction == 'up') {
-                        index = this.move.indexOf('down');
+                        index = that.move.indexOf('down');
                         if (index > -1) {
-                            this.move.splice(index, 1);
+                            that.move.splice(index, 1);
                         }
                     } else {
-                        index = this.move.indexOf('up');
+                        index = that.move.indexOf('up');
                         if (index > -1) {
-                            this.move.splice(index, 1);
+                            that.move.splice(index, 1);
                         }
                     }
                 }
             }
 
-            index = this.move.indexOf(direction);
+            index = that.move.indexOf(direction);
             if (enable) {
                 if (index == -1) {
                     that.move.push(direction);
                 }
-
-                that.attack = false;
             } else {
                 if (index > -1) {
                     that.move.splice(index, 1);
@@ -72,6 +70,10 @@ game.createControl = function () {
                 return 'move';
             }
             return 'idle';
+        };
+
+        that.cancelMove = function () {
+            that.move = [];
         };
 
         that.makeIdle = function () {

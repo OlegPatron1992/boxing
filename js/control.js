@@ -8,7 +8,7 @@ game.control = (function (that) {
     that.buttonBlockHolder = document.getElementById('button-block');
     that.buttonPauseHolder = document.getElementById('button-pause');
     that._size = null;
-    that.enabled = true;
+    that._enabled = true;
 
     that.hide = function () {
         that.holder.classList.add('hidden');
@@ -19,15 +19,136 @@ game.control = (function (that) {
     };
 
     that.enable = function () {
-        that.enabled = true;
+        that._enabled = true;
     };
 
     that.disable = function () {
-        that.enabled = false;
+        that._enabled = false;
     };
 
     that.isEnabled = function () {
-        return that.enabled;
+        return that._enabled;
+    };
+
+    that._processMoveTouch = function (x, y) {
+        var temp,
+            dX,
+            dY,
+            moveDirections;
+
+        temp = that.buttonMoveHolder.getBoundingClientRect();
+
+        dX = x - (temp.width / 2 + temp.left);
+        dY = y - (temp.height / 2 + temp.top);
+
+        game.player1.control.cancelMove();
+
+        switch (true) {
+            case dY > 0 && Math.abs(dX) / dY < Math.sin(Math.PI / 8):
+                moveDirections = ['down'];
+                break;
+            case dY < 0 && Math.abs(dX) / -dY < Math.sin(Math.PI / 8):
+                moveDirections = ['up'];
+                break;
+            case dX > 0 && Math.abs(dY) / dX < Math.sin(Math.PI / 8):
+                moveDirections = ['right'];
+                break;
+            case dX < 0 && Math.abs(dY) / -dX < Math.sin(Math.PI / 8):
+                moveDirections = ['left'];
+                break;
+            case dX > 0 && dY > 0:
+                moveDirections = ['right', 'down'];
+                break;
+            case dX > 0 && dY < 0:
+                moveDirections = ['right', 'up'];
+                break;
+            case dX < 0 && dY < 0:
+                moveDirections = ['left', 'up'];
+                break;
+            case dX < 0 && dY > 0:
+                moveDirections = ['left', 'down'];
+                break;
+            default:
+                moveDirections = [];
+                break;
+        }
+
+        moveDirections.forEach(function (direction) {
+            game.player1.control.setMove(direction, true);
+        });
+    };
+    that._cancelMoveTouch = function () {
+        game.player1.control.cancelMove();
+    };
+
+    that._processAttachTouch = function () {
+        game.player1.control.setAttack(true);
+    };
+    that._cancelAttachTouch = function () {
+        game.player1.control.setAttack(false);
+    };
+
+    that._processBlockTouch = function () {
+        game.player1.control.setBlock(true);
+    };
+    that._cancelBlockTouch = function () {
+        game.player1.control.setBlock(false);
+    };
+
+    that._processPauseTouch = function () {
+        game.scenery.pause();
+    };
+
+    that.initListeners = function () {
+        that.buttonMoveHolder.addEventListener("touchstart", function (event) {
+            event.preventDefault();
+            var touches = event.changedTouches;
+            that._processMoveTouch(touches[0].pageX, touches[0].pageY);
+        }, false);
+        that.buttonMoveHolder.addEventListener("touchend", function (event) {
+            event.preventDefault();
+            that._cancelMoveTouch();
+        }, false);
+        that.buttonMoveHolder.addEventListener("touchcancel", function (event) {
+            event.preventDefault();
+            that._cancelMoveTouch();
+        }, false);
+        that.buttonMoveHolder.addEventListener("touchmove", function (event) {
+            event.preventDefault();
+            var touches = event.changedTouches;
+            that._processMoveTouch(touches[0].pageX, touches[0].pageY);
+        }, false);
+
+        that.buttonAttackHolder.addEventListener("touchstart", function (event) {
+            event.preventDefault();
+            that._processAttachTouch();
+        }, false);
+        that.buttonAttackHolder.addEventListener("touchend", function (event) {
+            event.preventDefault();
+            that._cancelAttachTouch();
+        }, false);
+        that.buttonAttackHolder.addEventListener("touchcancel", function (event) {
+            event.preventDefault();
+            that._cancelAttachTouch();
+        }, false);
+
+        that.buttonBlockHolder.addEventListener("touchstart", function (event) {
+            event.preventDefault();
+            that._processBlockTouch();
+        }, false);
+        that.buttonBlockHolder.addEventListener("touchend", function (event) {
+            event.preventDefault();
+            that._cancelBlockTouch();
+        }, false);
+        that.buttonBlockHolder.addEventListener("touchcancel", function (event) {
+            event.preventDefault();
+            that._cancelBlockTouch();
+        }, false);
+
+        that.buttonPauseHolder.addEventListener("touchstart", function (event) {
+            event.preventDefault();
+            that._processPauseTouch();
+        }, false);
     };
 
     that.configure = function () {

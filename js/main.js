@@ -6,34 +6,43 @@ game.main = (function (that) {
     that.contentHolder = document.getElementById('game-content');
     that.loadingHolder = document.getElementById('game-loading');
     that.state = 's';
-    that._updateSizeTimeout = null;
-    that.frozen = false;
+    that._size = null;
+    that._configureTimeout = null;
+    that._frozen = false;
     that._gameTimeout = null;
     that._botTimeout = null;
     that._drawerRequest = null;
 
+    that.getSize = function () {
+        return that._size;
+    };
+
     that.isFrozen = function () {
-        return that.frozen;
+        return that._frozen;
     };
 
     that.setFrozen = function (frozen) {
-        that.frozen = frozen;
+        that._frozen = frozen;
     };
 
     that.init = function () {
         that.loadingHolder.classList.add('hidden');
         that.contentHolder.classList.remove('hidden');
 
+        that.configure();
         game.drawer.configure();
         game.scenery.configure();
         game.manager.configure();
         game.sound.configure();
         game.keyboard.configure();
-        if (game.control.isEnabled()) {
-            game.control.configure();
-        }
 
-        that._updateSize();
+        game.control.initListeners();
+        if (isMobile) {
+            game.control.enable();
+            game.control.configure();
+        } else {
+            game.control.disable();
+        }
 
         game.scenery.mainMenu();
     };
@@ -63,11 +72,17 @@ game.main = (function (that) {
 
     that.pause = function () {
         that.state = 'p';
+        if (game.control.isEnabled()) {
+            game.control.hide();
+        }
         that._clearTimeouts();
     };
 
     that.run = function () {
         that.state = 'r';
+        if (game.control.isEnabled()) {
+            game.control.show()
+        }
         that._gameLoop();
         that._drawLoop();
         if (game.bot.isEnabled()) {
@@ -104,16 +119,14 @@ game.main = (function (that) {
         that._drawerRequest = requestAnimFrame(that._drawLoop);
     };
 
-    that._updateSize = function () {
-        var size;
-
+    that.configure = function () {
         that.contentHolder.style.width = 'auto';
         that.contentHolder.style.height = 'auto';
 
-        size = Math.min(that.holder.offsetWidth, that.holder.offsetHeight);
+        that._size = Math.min(that.holder.offsetWidth, that.holder.offsetHeight);
 
-        that.contentHolder.style.width = size + 'px';
-        that.contentHolder.style.height = size + 'px';
+        that.contentHolder.style.width = that._size + 'px';
+        that.contentHolder.style.height = that._size + 'px';
 
         game.drawer.configure();
         if (game.control.isEnabled()) {
@@ -122,11 +135,11 @@ game.main = (function (that) {
     };
 
     that.onResize = function () {
-        if (that._updateSizeTimeout != null) {
-            clearTimeout(that._updateSizeTimeout);
-            that._updateSizeTimeout = null;
+        if (that._configureTimeout != null) {
+            clearTimeout(that._configureTimeout);
+            that._configureTimeout = null;
         }
-        setTimeout(that._updateSize, 1000 / 10);
+        that._configureTimeout = setTimeout(that.configure, 1000 / 10);
     };
 
     return that;

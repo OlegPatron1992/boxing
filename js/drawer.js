@@ -20,7 +20,7 @@ game.drawer = (function (that) {
     };
 
     that.configure = function () {
-        that.ringSize = Math.min(game.main.holder.offsetWidth, game.main.holder.offsetHeight);
+        that.ringSize = game.main.getSize();
         that.baseSize = that.ringSize / game.config.size.ring;
         that.unitSize = that.baseSize * game.config.size.unit;
 

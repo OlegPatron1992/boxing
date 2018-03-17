@@ -234,12 +234,19 @@ game.manager = (function (that) {
     };
 
     that.makeMove = function (unit, altUnit) {
-        var dX, dY, moveDirections;
+        var dX, dY;
 
         dX = unit.position.x - altUnit.position.x;
         dY = unit.position.y - altUnit.position.y;
 
-        moveDirections = [];
+        unit.control.makeIdle();
+        that.getMoveDirections(dX, dY).forEach(function (direction) {
+            unit.control.setMove(direction, true);
+        });
+    };
+
+    that.getMoveDirections = function (dX, dY) {
+        var moveDirections = [];
 
         if (Math.abs(dX) > game.config.speed.straight) {
             if (dX < 0) {
@@ -256,11 +263,6 @@ game.manager = (function (that) {
                 moveDirections.push('up');
             }
         }
-
-        unit.control.makeIdle();
-        moveDirections.forEach(function (direction) {
-            unit.control.setMove(direction, true);
-        });
 
         return moveDirections;
     };
