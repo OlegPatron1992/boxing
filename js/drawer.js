@@ -350,6 +350,7 @@ game.drawer = (function (that) {
 
     that.draw = function () {
         that.clear();
+        that.canvasContext.globalAlpha = 1;
         that.drawRing();
         that.canvasContext.globalAlpha = 0.5;
         that.drawEffects(game.player1);
@@ -361,12 +362,12 @@ game.drawer = (function (that) {
         that.drawUnit(game.player2, {
             color: that.colors.player2
         });
-        that.canvasContext.globalAlpha = 0.5;
+        that.canvasContext.globalAlpha = 0.8;
         that.drawStats();
+        that.canvasContext.globalAlpha = 0.5;
         if (game.main.isFrozen()) {
             that.drawFrozenTimeout();
         }
-        that.canvasContext.globalAlpha = 1;
     };
 
     return that;
