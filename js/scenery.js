@@ -64,9 +64,13 @@ game.scenery = (function (that) {
     };
 
     that.selectMode = function () {
-        that.hideAll();
-        that.showScene('select-mode');
-        that._history.push('selectMode');
+        if (isMobile) {
+            that.playerVSBot();
+        } else {
+            that.hideAll();
+            that.showScene('select-mode');
+            that._history.push('selectMode');
+        }
     };
 
     that.playerVSBot = function () {
