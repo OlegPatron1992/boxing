@@ -6,37 +6,6 @@
     overflow: hidden;
 }
 
-#game #game-content {
-    position: relative;
-    margin: auto auto;
-}
-
-#game #game-loading {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -50px;
-    margin-top: -50px;
-}
-
-#game #game-loading .loader {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #0561cd;
-    border-radius: 50%;
-    animation: spin 2s linear infinite;
-    width: 100px;
-    height: 100px;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 #game * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -44,6 +13,11 @@
     padding: 0;
     margin: 0;
     line-height: normal;
+}
+
+#game #game-content {
+    position: relative;
+    margin: auto auto;
 }
 
 #game #drawer-container {
@@ -147,4 +121,69 @@
 
 #game .scene .control-settings {
     margin: 0 auto 5% auto;
+}
+
+
+#game #game-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+#game #game-loading .loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #0561cd;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#game #game-control {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+#game div.touch-button {
+    position: absolute;
+    border: 0.5ex solid #ffffff;
+    opacity: 0.8;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 10ex;
+    height: 10ex;
+    background-position: center center;
+    background-size: 80% 80%;
+    background-repeat: no-repeat;
+}
+
+#game #button-move {
+    background-image: url("../img/control/move.png");
+}
+
+#game #button-attack {
+    background-image: url("../img/control/attack.png");
+}
+
+#game #button-block {
+    background-image: url("../img/control/block.png");
+}
+
+#game #button-pause {
+    background-image: url("../img/control/pause.png");
 }

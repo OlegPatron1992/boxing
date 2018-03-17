@@ -29,6 +29,9 @@ game.main = (function (that) {
         game.manager.configure();
         game.sound.configure();
         game.keyboard.configure();
+        if (game.control.isEnabled()) {
+            game.control.configure();
+        }
 
         that._updateSize();
 
@@ -113,6 +116,9 @@ game.main = (function (that) {
         that.contentHolder.style.height = size + 'px';
 
         game.drawer.configure();
+        if (game.control.isEnabled()) {
+            game.control.configure();
+        }
     };
 
     that.onResize = function () {
