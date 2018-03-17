@@ -169,8 +169,8 @@ game.control = (function (that) {
         that.buttonBlockHolder.style.right = that._size * 0.05 + 'px';
         that.buttonBlockHolder.style.bottom = that._size * 0.3 + 'px';
 
-        that.buttonPauseHolder.style.width = that._size * 0.15 + 'px';
-        that.buttonPauseHolder.style.height = that._size * 0.15 + 'px';
+        that.buttonPauseHolder.style.width = that._size * 0.1 + 'px';
+        that.buttonPauseHolder.style.height = that._size * 0.1 + 'px';
         that.buttonPauseHolder.style.right = that._size * 0.05 + 'px';
         that.buttonPauseHolder.style.top = that._size * 0.05 + 'px';
     };
