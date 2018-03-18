@@ -70,9 +70,6 @@
     background: #3f7ecd;
     color: #ffffff;
     border: 1ex solid transparent;
-    -webkit-border-radius: 10%;
-    -moz-border-radius: 10%;
-    border-radius: 10%;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
@@ -138,6 +135,8 @@
 #game #game-loading .loader {
     border: 16px solid #f3f3f3;
     border-top: 16px solid #0561cd;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     border-radius: 50%;
     animation: spin 2s linear infinite;
     width: 100px;

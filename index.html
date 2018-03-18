@@ -49,12 +49,13 @@
                     <div class="title">
                         Select Mode
                     </div>
-                    <div class="button" onclick="game.scenery.callSceneAction('select-mode', 'player-vs-bot');">Player
-                        VS Bot
+                    <div class="button" data-action="player-vs-bot"
+                         onclick="game.scenery.callSceneAction('select-mode', this.getAttribute('data-action'));">
+                        Player VS Bot
                     </div>
-                    <div class="button" onclick="game.scenery.callSceneAction('select-mode', 'player-vs-player');">
-                        Player VS
-                        Player
+                    <div class="button" data-action="player-vs-player"
+                         onclick="game.scenery.callSceneAction('select-mode',  this.getAttribute('data-action'));">
+                        Player VS Player
                     </div>
                     <div class="button" onclick="game.scenery.back();">Back</div>
                 </div>
@@ -65,7 +66,9 @@
                     <div class="title">
                         Pause
                     </div>
-                    <div class="button" onclick="game.scenery.callSceneAction('pause-menu', 'resume');">Resume</div>
+                    <div class="button" data-action="resume"
+                         onclick="game.scenery.callSceneAction('pause-menu', this.getAttribute('data-action'));">Resume
+                    </div>
                     <div class="button" onclick="game.scenery.showScene('select-mode');">New Game</div>
                     <div class="button" onclick="game.scenery.showScene('settings');">Settings</div>
                 </div>
@@ -87,10 +90,12 @@
                             Mobile Mode
                             <span class="value"></span>
                         </div>
-                        <div class="button" data-action="toggle-mobile-mode" onclick="game.scenery.callSceneAction('settings', 'fullscreen');">Full
-                            Screen
+                        <div class="button" data-action="fullscreen"
+                             onclick="game.scenery.callSceneAction('settings', this.getAttribute('data-action'));">
+                            Full Screen
                         </div>
-                        <div class="button" onclick="game.scenery.showScene('settings-player1-controls');">Controls
+                        <div class="button" onclick="game.scenery.showScene('settings-player1-controls');">
+                            Controls
                         </div>
                     </div>
                     <div class="button" onclick="game.scenery.back();">Back</div>
