@@ -3,7 +3,7 @@ game.util = (function (that) {
         'use strict';
 
         that.requestAnimationFrame = function (callback) {
-            (window.requestAnimationFrame ||
+            return (window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
@@ -14,7 +14,7 @@ game.util = (function (that) {
         };
 
         that.cancelAnimationFrame = function (id) {
-            (
+            return (
                 window.webkitCancelAnimationFrame ||
                 window.mozCancelAnimationFrame ||
                 window.oCancelAnimationFrame ||
