@@ -32,14 +32,15 @@
             <canvas id="canvas"></canvas>
         </div>
         <div id="scenery-container">
+            <div id="scene-game" class="scene"></div>
             <div id="scene-main-menu" class="scene">
                 <div class="mask"></div>
                 <div class="content">
                     <div class="title">
                         Main Menu
                     </div>
-                    <div class="button" onclick="game.scenery.selectMode();">New Game</div>
-                    <div class="button" onclick="game.scenery.settings();">Settings</div>
+                    <div class="button" onclick="game.scenery.showScene('select-mode');">New Game</div>
+                    <div class="button" onclick="game.scenery.showScene('settings');">Settings</div>
                 </div>
             </div>
             <div id="scene-select-mode" class="scene">
@@ -48,8 +49,13 @@
                     <div class="title">
                         Select Mode
                     </div>
-                    <div class="button" onclick="game.scenery.playerVSBot();">Player VS Bot</div>
-                    <div class="button" onclick="game.scenery.playerVSPlayer();">Player VS Player</div>
+                    <div class="button" onclick="game.scenery.callSceneAction('select-mode', 'player-vs-bot');">Player
+                        VS Bot
+                    </div>
+                    <div class="button" onclick="game.scenery.callSceneAction('select-mode', 'player-vs-player');">
+                        Player VS
+                        Player
+                    </div>
                     <div class="button" onclick="game.scenery.back();">Back</div>
                 </div>
             </div>
@@ -59,9 +65,9 @@
                     <div class="title">
                         Pause
                     </div>
-                    <div class="button" onclick="game.scenery.resume();">Resume</div>
-                    <div class="button" onclick="game.scenery.selectMode();">New Game</div>
-                    <div class="button" onclick="game.scenery.settings();">Settings</div>
+                    <div class="button" onclick="game.scenery.callSceneAction('pause-menu', 'resume');">Resume</div>
+                    <div class="button" onclick="game.scenery.showScene('select-mode');">New Game</div>
+                    <div class="button" onclick="game.scenery.showScene('settings');">Settings</div>
                 </div>
             </div>
             <div id="scene-settings" class="scene">
@@ -70,15 +76,23 @@
                     <div class="title">
                         Settings
                     </div>
-                    <div class="button">
-                        <label for="toggle-audio-checkbox">
+                    <div class="button-group">
+                        <div class="button" data-action="toggle-audio"
+                             onclick="game.scenery.callSceneAction('settings', this.getAttribute('data-action'));">
                             Audio Effects
-                            <input id="toggle-audio-checkbox" type="checkbox" checked="checked"
-                                   onchange="game.scenery.toggleAudio(this.checked);"/>
-                        </label>
+                            <span class="value"></span>
+                        </div>
+                        <div class="button" data-action="toggle-mobile-mode"
+                             onclick="game.scenery.callSceneAction('settings', this.getAttribute('data-action'));">
+                            Mobile Mode
+                            <span class="value"></span>
+                        </div>
+                        <div class="button" data-action="toggle-mobile-mode" onclick="game.scenery.callSceneAction('settings', 'fullscreen');">Full
+                            Screen
+                        </div>
+                        <div class="button" onclick="game.scenery.showScene('settings-player1-controls');">Controls
+                        </div>
                     </div>
-                    <div class="button" onclick="game.scenery.toggleFullScreen();">Full Screen</div>
-                    <div class="button" onclick="game.scenery.settingsControl();">Controls</div>
                     <div class="button" onclick="game.scenery.back();">Back</div>
                 </div>
             </div>
@@ -88,39 +102,41 @@
                     <div class="title">
                         Player Controls
                     </div>
-                    <div class="control-settings">
-                        <div class="button control-button" data-action="up"
+                    <div class="button-group">
+                        <div class="button" data-action="up"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
                             UP
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="down"
+                        <div class="button" data-action="down"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
                             DOWN
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="left"
+                        <div class="button" data-action="left"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
                             LEFT
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="right"
+                        <div class="button" data-action="right"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
                             RIGHT
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="block"
+                        <div class="button" data-action="block"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
                             BLOCK
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="attack"
+                        <div class="button" data-action="attack"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player1');">
                             ATTACK
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
                     </div>
-                    <div class="button" onclick="game.scenery.settingsControl2();">2nd Player Controls</div>
+                    <div class="button" onclick="game.scenery.showScene('settings-player2-controls');">2nd Player
+                        Controls
+                    </div>
                     <div class="button" onclick="game.scenery.back();">Back</div>
                 </div>
             </div>
@@ -130,36 +146,36 @@
                     <div class="title">
                         2nd Player Controls
                     </div>
-                    <div class="control-settings">
-                        <div class="button control-button" data-action="up"
+                    <div class="button-group">
+                        <div class="button" data-action="up"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
                             UP
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="down"
+                        <div class="button" data-action="down"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
                             DOWN
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="left"
+                        <div class="button" data-action="left"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
                             LEFT
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="right"
+                        <div class="button" data-action="right"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
                             RIGHT
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="block"
+                        <div class="button" data-action="block"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
                             BLOCK
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
-                        <div class="button control-button" data-action="attack"
+                        <div class="button" data-action="attack"
                              onclick="game.keyboard.changeKey(this.getAttribute('data-action'), 'player2');">
                             ATTACK
-                            <span class="key"></span>
+                            <span class="value"></span>
                         </div>
                     </div>
                     <div class="button" onclick="game.scenery.back();">Back</div>
@@ -197,7 +213,7 @@
 <script type="text/javascript" src="./lib/jquery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="./js/config.js"></script>
 <script type="text/javascript" src="./js/manager.js"></script>
-<script type="text/javascript" src="./js/fix.js"></script>
+<script type="text/javascript" src="./js/util.js"></script>
 <script type="text/javascript" src="./js/drawer.js"></script>
 <script type="text/javascript" src="./js/bot.js"></script>
 <script type="text/javascript" src="./js/main.js"></script>
@@ -210,6 +226,13 @@
 <script type="text/javascript" src="./js/create/control.js"></script>
 <script type="text/javascript" src="./js/create/unit.js"></script>
 <script type="text/javascript" src="./js/create/animation.js"></script>
+<script type="text/javascript" src="./js/configure/scene-game.js"></script>
+<script type="text/javascript" src="./js/configure/scene-main-menu.js"></script>
+<script type="text/javascript" src="./js/configure/scene-pause-menu.js"></script>
+<script type="text/javascript" src="./js/configure/scene-select-mode.js"></script>
+<script type="text/javascript" src="./js/configure/scene-settings.js"></script>
+<script type="text/javascript" src="./js/configure/scene-settings-player1-controls.js"></script>
+<script type="text/javascript" src="./js/configure/scene-settings-player2-controls.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         'use strict';

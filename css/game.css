@@ -99,7 +99,7 @@
     margin: 0 auto 1% auto;
 }
 
-#game div.button.control-button span.key {
+#game div.button span.value {
     border: 1ex solid transparent;
     -webkit-border-radius: 10%;
     -moz-border-radius: 10%;
@@ -109,20 +109,23 @@
     background: #ffffff;
 }
 
-#game div.button.control-button.active {
+#game div.button.active {
     color: #0561cd;
     background: #ffffff;
 }
 
-#game div.button.control-button.active span.key {
+#game div.button.active span.value {
     color: #ffffff;
     background: #0561cd;
 }
 
-#game .scene .control-settings {
+#game .scene .button-group {
     margin: 0 auto 5% auto;
 }
 
+#game .scene .button-group .button {
+    margin-bottom: 2%;
+}
 
 #game #game-loading {
     position: absolute;

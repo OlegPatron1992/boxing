@@ -30,21 +30,20 @@ game.main = (function (that) {
         that.contentHolder.classList.remove('hidden');
 
         that.configure();
+
+        game.control.initListeners();
+        game.control.setEnabled(game.util.isMobile);
+        if (game.util.isMobile) {
+            game.control.configure();
+        }
+
         game.drawer.configure();
         game.scenery.configure();
         game.manager.configure();
         game.sound.configure();
         game.keyboard.configure();
 
-        game.control.initListeners();
-        if (isMobile) {
-            game.control.enable();
-            game.control.configure();
-        } else {
-            game.control.disable();
-        }
-
-        game.scenery.mainMenu();
+        game.scenery.showScene('main-menu');
     };
 
     that._clearTimeouts = function () {
@@ -53,7 +52,7 @@ game.main = (function (that) {
             that._botTimeout = null;
         }
         if (that._drawerRequest) {
-            cancelAnimFrame(that._drawerRequest);
+            game.util.cancelAnimationFrame(that._drawerRequest);
             that._drawerRequest = null;
         }
         if (that._gameTimeout) {
@@ -116,7 +115,7 @@ game.main = (function (that) {
 
     that._drawLoop = function () {
         game.drawer.draw();
-        that._drawerRequest = requestAnimFrame(that._drawLoop);
+        that._drawerRequest = game.util.requestAnimationFrame(that._drawLoop);
     };
 
     that.configure = function () {

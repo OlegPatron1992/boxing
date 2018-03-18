@@ -3,7 +3,14 @@ game.sound = (function (that) {
     'use strict';
 
     that._sounds = {};
-    that.enabled = true;
+    that._enabled = true;
+
+    that.setEnabled = function (enabled) {
+        that._enabled = enabled;
+    };
+    that.isEnabled = function () {
+        return that._enabled;
+    };
 
     that._registerSound = function (soundName) {
         that._sounds[soundName] = document.getElementById('sound-' + soundName);
@@ -22,7 +29,7 @@ game.sound = (function (that) {
     };
 
     that.play = function (soundName) {
-        if (that.enabled) {
+        if (that._enabled) {
             that._sounds[soundName].currentTime = 0;
             that._sounds[soundName].play();
         }

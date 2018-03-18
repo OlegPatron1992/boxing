@@ -8,11 +8,19 @@ game.createScene = function () {
         };
 
         that.show = function () {
-            that.holder.style.display = 'block';
+            that.holder.classList.remove('hidden');
         };
 
         that.hide = function () {
-            that.holder.style.display = 'none';
+            that.holder.classList.add('hidden');
+        };
+
+        that.onShow = function () {
+
+        };
+
+        that.onHide = function () {
+
         };
 
         return that;

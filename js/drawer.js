@@ -364,8 +364,8 @@ game.drawer = (function (that) {
         });
         that.canvasContext.globalAlpha = 0.8;
         that.drawStats();
-        that.canvasContext.globalAlpha = 0.5;
         if (game.main.isFrozen()) {
+            that.canvasContext.globalAlpha = 0.5;
             that.drawFrozenTimeout();
         }
     };

@@ -2,18 +2,13 @@ var game = game || {};
 game.bot = (function (that) {
     'use strict';
 
-    that.enabled = null;
+    that._enabled = null;
 
-    that.enable = function () {
-        that.enabled = true;
+    that.setEnabled = function (enabled) {
+        that._enabled = enabled;
     };
-
-    that.disable = function () {
-        that.enabled = false;
-    };
-
     that.isEnabled = function () {
-        return that.enabled;
+        return that._enabled;
     };
 
     that.process = function () {

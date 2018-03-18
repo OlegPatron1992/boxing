@@ -8,7 +8,14 @@ game.control = (function (that) {
     that.buttonBlockHolder = document.getElementById('button-block');
     that.buttonPauseHolder = document.getElementById('button-pause');
     that._size = null;
-    that._enabled = true;
+    that._enabled = null;
+
+    that.setEnabled = function (enabled) {
+        that._enabled = enabled;
+    };
+    that.isEnabled = function () {
+        return that._enabled;
+    };
 
     that.hide = function () {
         that.holder.classList.add('hidden');
@@ -16,18 +23,6 @@ game.control = (function (that) {
 
     that.show = function () {
         that.holder.classList.remove('hidden');
-    };
-
-    that.enable = function () {
-        that._enabled = true;
-    };
-
-    that.disable = function () {
-        that._enabled = false;
-    };
-
-    that.isEnabled = function () {
-        return that._enabled;
     };
 
     that._processMoveTouch = function (x, y) {
@@ -95,8 +90,8 @@ game.control = (function (that) {
         game.player1.control.setBlock(false);
     };
 
-    that._processPauseTouch = function () {
-        game.scenery.pause();
+    that._processPauseClick = function () {
+        game.scenery.showScene('pause-menu');
     };
 
     that.initListeners = function () {
@@ -145,9 +140,9 @@ game.control = (function (that) {
             that._cancelBlockTouch();
         }, false);
 
-        that.buttonPauseHolder.addEventListener("touchstart", function (event) {
+        that.buttonPauseHolder.addEventListener("click", function (event) {
             event.preventDefault();
-            that._processPauseTouch();
+            that._processPauseClick();
         }, false);
     };
 

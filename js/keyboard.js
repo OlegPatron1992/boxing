@@ -162,7 +162,7 @@ game.keyboard = (function (that) {
         for (keyCode in that.settings) {
             if (that.settings.hasOwnProperty(keyCode)) {
                 keyHolder = that._getActionHolder(that.settings[keyCode].playerId, that.settings[keyCode].action);
-                keyHolder.querySelector('span.key').innerHTML = that.map[keyCode];
+                keyHolder.querySelector('span.value').innerHTML = that.map[keyCode];
             }
         }
     };
@@ -192,7 +192,7 @@ game.keyboard = (function (that) {
 
         if (this.map.hasOwnProperty(keyCode)) {
             if (that.settings.hasOwnProperty(keyCode)) {
-                keyHolder = that._getActionHolder(that.settings[keyCode].playerId, that.settings[keyCode].action).querySelector('span.key');
+                keyHolder = that._getActionHolder(that.settings[keyCode].playerId, that.settings[keyCode].action).querySelector('span.value');
                 keyHolder.classList.add('hidden');
             }
             for (temp in that.settings) {
@@ -206,7 +206,7 @@ game.keyboard = (function (that) {
                 }
             }
             that.settings[keyCode] = that._changing;
-            keyHolder = that._getActionHolder(that.settings[keyCode].playerId, that.settings[keyCode].action).querySelector('span.key');
+            keyHolder = that._getActionHolder(that.settings[keyCode].playerId, that.settings[keyCode].action).querySelector('span.value');
             keyHolder.innerHTML = that.map[keyCode];
             keyHolder.classList.remove('hidden');
             that.cancelChanging();
@@ -239,7 +239,7 @@ game.keyboard = (function (that) {
                         break;
                 }
             } else if (keyCode == 27) {
-                game.scenery.pause();
+                game.scenery.showScene('pause-menu');
             }
         } else if (that.isChanging()) {
             switch (keyCode) {
