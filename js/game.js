@@ -19,6 +19,16 @@ var game = game || {};
     };
 
     that.init = function () {
+        document.addEventListener("keydown", function (event) {
+            that.keyboard.keyDown(event.keyCode);
+        }, false);
+        document.addEventListener("keyup", function (event) {
+            that.keyboard.keyUp(event.keyCode);
+        }, false);
+        window.onresize = function() {
+            that.main.onResize();
+        };
+
         that.main.loadingHolder.classList.add('hidden');
         that.main.contentHolder.classList.remove('hidden');
 

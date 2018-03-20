@@ -204,12 +204,6 @@
 <script type="text/javascript" src="./dist/all.js"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        document.addEventListener("keydown", function (event) {
-            game.keyboard.keyDown(event.keyCode);
-        }, false);
-        document.addEventListener("keyup", function (event) {
-            game.keyboard.keyUp(event.keyCode);
-        }, false);
         game.init();
     });
 </script>
