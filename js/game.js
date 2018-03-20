@@ -25,7 +25,7 @@ var game = game || {};
         document.addEventListener("keyup", function (event) {
             that.keyboard.keyUp(event.keyCode);
         }, false);
-        window.onresize = function() {
+        window.onresize = function () {
             that.main.onResize();
         };
 
