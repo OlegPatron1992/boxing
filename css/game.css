@@ -53,7 +53,9 @@
     opacity: 0.9;
     background-image: url("../img/main-menu.png");
     background-position: center center;
-    background-size: auto 100%;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #000000;
 }
 
 #game #scenery-container div.scene div.content {
