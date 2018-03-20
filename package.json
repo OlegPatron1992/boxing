@@ -1,0 +1,27 @@
+{
+  "name": "game-boxing",
+  "version": "1.0.0",
+  "description": "HTML5 game Boxing",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olegpatron1992/game-boxing.git"
+  },
+  "keywords": [
+    "HTML5",
+    "game",
+    "boxing",
+    "canvas"
+  ],
+  "author": "Oleg Patrushev",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/olegpatron1992/game-boxing/issues"
+  },
+  "homepage": "https://github.com/olegpatron1992/game-boxing#readme"
+}

@@ -1,4 +1,3 @@
-var game = game || {};
 game.createScene = function () {
     return (function (that) {
         that.holder = null;

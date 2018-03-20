@@ -1,4 +1,3 @@
-var game = game || {};
 game.util = (function (that) {
         'use strict';
 

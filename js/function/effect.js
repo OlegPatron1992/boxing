@@ -1,4 +1,3 @@
-var game = game || {};
 game.createEffect = function () {
     return (function (that) {
         that.type = null;

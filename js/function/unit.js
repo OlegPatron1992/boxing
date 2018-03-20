@@ -1,4 +1,3 @@
-var game = game || {};
 game.createUnit = function () {
     return (function (that) {
         that.id = null;

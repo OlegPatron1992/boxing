@@ -1,12 +1,11 @@
-var game = game || {};
 game.control = (function (that) {
     'use strict';
 
-    that.holder = document.getElementById('game-control');
-    that.buttonMoveHolder = document.getElementById('button-move');
-    that.buttonAttackHolder = document.getElementById('button-attack');
-    that.buttonBlockHolder = document.getElementById('button-block');
-    that.buttonPauseHolder = document.getElementById('button-pause');
+    that.holder = document.getElementById(game.prefix + '-control');
+    that.buttonMoveHolder = document.getElementById(game.prefix + '-button-move');
+    that.buttonAttackHolder = document.getElementById(game.prefix + '-button-attack');
+    that.buttonBlockHolder = document.getElementById(game.prefix + '-button-block');
+    that.buttonPauseHolder = document.getElementById(game.prefix + '-button-pause');
     that._size = null;
     that._enabled = null;
 

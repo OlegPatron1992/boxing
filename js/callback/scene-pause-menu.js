@@ -1,6 +1,9 @@
-var game = game || {};
-game.configureScenePauseMenu = function (scene) {
+game.on('init', function () {
     'use strict';
+
+    var scene;
+
+    scene = game.scenery.getScene('pause-menu');
 
     scene.onShow = function () {
         game.main.pause();
@@ -10,4 +13,4 @@ game.configureScenePauseMenu = function (scene) {
         game.main.run();
         game.scenery.showScene('game');
     };
-};
+});

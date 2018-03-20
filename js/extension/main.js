@@ -1,10 +1,9 @@
-var game = game || {};
 game.main = (function (that) {
     'use strict';
 
-    that.holder = document.getElementById('game');
-    that.contentHolder = document.getElementById('game-content');
-    that.loadingHolder = document.getElementById('game-loading');
+    that.holder = document.getElementById(game.prefix + '-main');
+    that.contentHolder = document.getElementById(game.prefix + '-content');
+    that.loadingHolder = document.getElementById(game.prefix + '-loading');
     that.state = 's';
     that._size = null;
     that._configureTimeout = null;
@@ -23,27 +22,6 @@ game.main = (function (that) {
 
     that.setFrozen = function (frozen) {
         that._frozen = frozen;
-    };
-
-    that.init = function () {
-        that.loadingHolder.classList.add('hidden');
-        that.contentHolder.classList.remove('hidden');
-
-        that.configure();
-
-        game.control.initListeners();
-        game.control.setEnabled(game.util.isMobile);
-        if (game.util.isMobile) {
-            game.control.configure();
-        }
-
-        game.drawer.configure();
-        game.scenery.configure();
-        game.manager.configure();
-        game.sound.configure();
-        game.keyboard.configure();
-
-        game.scenery.showScene('main-menu');
     };
 
     that._clearTimeouts = function () {

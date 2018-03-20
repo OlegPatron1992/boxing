@@ -6,34 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <link href="./css/site.css" rel="stylesheet">
     <link href="./css/game.css" rel="stylesheet">
-    <meta name="google-site-verification" content="ug2DGFR9qIElxgoPpQ5PjDqJ-A1YcD7FH0E0NFwYOpQ"/>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115877626-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-115877626-1');
-    </script>
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
     <meta name="theme-color" content="#000000">
 </head>
 <body>
-<div id="game">
+<div id="game-main">
     <div id="game-content" class="hidden">
-        <div id="drawer-container">
-            <canvas id="canvas"></canvas>
+        <div id="game-drawer-container">
+            <canvas id="game-canvas"></canvas>
         </div>
-        <div id="scenery-container">
-            <div id="scene-game" class="scene"></div>
-            <div id="scene-main-menu" class="scene">
+        <div id="game-scenery-container">
+            <div id="game-scene-game" class="scene"></div>
+            <div id="game-scene-main-menu" class="scene">
                 <div class="mask"></div>
                 <div class="content">
                     <div class="title">
@@ -43,7 +29,7 @@
                     <div class="button" onclick="game.scenery.showScene('settings');">Settings</div>
                 </div>
             </div>
-            <div id="scene-select-mode" class="scene">
+            <div id="game-scene-select-mode" class="scene">
                 <div class="mask"></div>
                 <div class="content">
                     <div class="title">
@@ -60,7 +46,7 @@
                     <div class="button" onclick="game.scenery.back();">Back</div>
                 </div>
             </div>
-            <div id="scene-pause-menu" class="scene">
+            <div id="game-scene-pause-menu" class="scene">
                 <div class="mask"></div>
                 <div class="content">
                     <div class="title">
@@ -73,7 +59,7 @@
                     <div class="button" onclick="game.scenery.showScene('settings');">Settings</div>
                 </div>
             </div>
-            <div id="scene-settings" class="scene">
+            <div id="game-scene-settings" class="scene">
                 <div class="mask"></div>
                 <div class="content">
                     <div class="title">
@@ -101,7 +87,7 @@
                     <div class="button" onclick="game.scenery.back();">Back</div>
                 </div>
             </div>
-            <div id="scene-settings-player1-controls" class="scene">
+            <div id="game-scene-settings-player1-controls" class="scene">
                 <div class="mask"></div>
                 <div class="content">
                     <div class="title">
@@ -145,7 +131,7 @@
                     <div class="button" onclick="game.scenery.back();">Back</div>
                 </div>
             </div>
-            <div id="scene-settings-player2-controls" class="scene">
+            <div id="game-scene-settings-player2-controls" class="scene">
                 <div class="mask"></div>
                 <div class="content">
                     <div class="title">
@@ -188,19 +174,19 @@
             </div>
         </div>
         <div class="hidden">
-            <audio id="sound-attack-base" preload="auto">
+            <audio id="game-sound-attack-base" preload="auto">
                 <source src="./audio/attack_base.mp3" type="audio/mpeg">
             </audio>
-            <audio id="sound-attack-block" preload="auto">
+            <audio id="game-sound-attack-block" preload="auto">
                 <source src="./audio/attack_block.mp3" type="audio/mpeg">
             </audio>
-            <audio id="sound-attack-dead" preload="auto">
+            <audio id="game-sound-attack-dead" preload="auto">
                 <source src="./audio/attack_dead.mp3" type="audio/mpeg">
             </audio>
-            <audio id="sound-attack-move" preload="auto">
+            <audio id="game-sound-attack-move" preload="auto">
                 <source src="./audio/attack_move.mp3" type="audio/mpeg">
             </audio>
-            <audio id="sound-ring-bell" preload="auto">
+            <audio id="game-sound-ring-bell" preload="auto">
                 <source src="./audio/ring_bell.mp3" type="audio/mpeg">
             </audio>
         </div>
@@ -209,50 +195,22 @@
         <div class="loader"></div>
     </div>
     <div id="game-control" class="hidden">
-        <div id="button-move" class="touch-button"></div>
-        <div id="button-attack" class="touch-button"></div>
-        <div id="button-block" class="touch-button"></div>
-        <div id="button-pause" class="touch-button"></div>
+        <div id="game-button-move" class="touch-button"></div>
+        <div id="game-button-attack" class="touch-button"></div>
+        <div id="game-button-block" class="touch-button"></div>
+        <div id="game-button-pause" class="touch-button"></div>
     </div>
 </div>
-<script type="text/javascript" src="./lib/jquery/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="./js/config.js"></script>
-<script type="text/javascript" src="./js/manager.js"></script>
-<script type="text/javascript" src="./js/util.js"></script>
-<script type="text/javascript" src="./js/drawer.js"></script>
-<script type="text/javascript" src="./js/bot.js"></script>
-<script type="text/javascript" src="./js/main.js"></script>
-<script type="text/javascript" src="./js/scenery.js"></script>
-<script type="text/javascript" src="./js/sound.js"></script>
-<script type="text/javascript" src="./js/keyboard.js"></script>
-<script type="text/javascript" src="./js/control.js"></script>
-<script type="text/javascript" src="./js/create/effect.js"></script>
-<script type="text/javascript" src="./js/create/scene.js"></script>
-<script type="text/javascript" src="./js/create/control.js"></script>
-<script type="text/javascript" src="./js/create/unit.js"></script>
-<script type="text/javascript" src="./js/create/animation.js"></script>
-<script type="text/javascript" src="./js/configure/scene-game.js"></script>
-<script type="text/javascript" src="./js/configure/scene-main-menu.js"></script>
-<script type="text/javascript" src="./js/configure/scene-pause-menu.js"></script>
-<script type="text/javascript" src="./js/configure/scene-select-mode.js"></script>
-<script type="text/javascript" src="./js/configure/scene-settings.js"></script>
-<script type="text/javascript" src="./js/configure/scene-settings-player1-controls.js"></script>
-<script type="text/javascript" src="./js/configure/scene-settings-player2-controls.js"></script>
+<script type="text/javascript" src="./dist/all.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        'use strict';
-
-        $(window).on('keydown', function (event) {
+    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("keydown", function (event) {
             game.keyboard.keyDown(event.keyCode);
-        });
-        $(window).on('keyup', function (event) {
+        }, false);
+        document.addEventListener("keyup", function (event) {
             game.keyboard.keyUp(event.keyCode);
-        });
-        $(window).on('resize', function () {
-            game.main.onResize();
-        });
-
-        game.main.init();
+        }, false);
+        game.init();
     });
 </script>
 </body>

@@ -1,15 +1,13 @@
-var game = game || {};
 game.scenery = (function (that) {
     'use strict';
 
-    that.holder = document.getElementById('scenery-container');
+    that.holder = document.getElementById(game.prefix + '-scenery-container');
     that._scenes = {};
     that._history = [];
 
     that._createScene = function (sceneId) {
         that._scenes[sceneId] = game.createScene();
-        that._scenes[sceneId].setHolder(document.getElementById('scene-' + sceneId));
-        game[game.util.idToCamelCase('configure-scene-' + sceneId)](that._scenes[sceneId]);
+        that._scenes[sceneId].setHolder(document.getElementById(game.prefix + '-scene-' + sceneId));
     };
 
     that.configure = function () {

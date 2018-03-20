@@ -1,6 +1,9 @@
-var game = game || {};
-game.configureSceneSettings = function (scene) {
+game.on('init', function () {
     'use strict';
+
+    var scene;
+
+    scene = game.scenery.getScene('settings');
 
     scene.onShow = function () {
         scene._updateMobileModeButton();
@@ -31,4 +34,4 @@ game.configureSceneSettings = function (scene) {
     scene.actionFullscreen = function () {
         game.util.makeFullScreen(game.main.holder);
     };
-};
+});

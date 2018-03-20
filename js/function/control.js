@@ -1,4 +1,3 @@
-var game = game || {};
 game.createControl = function () {
     return (function (that) {
         that.move = [];

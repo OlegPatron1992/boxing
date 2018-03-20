@@ -1,4 +1,3 @@
-var game = game || {};
 game.manager = (function (that) {
     'use strict';
 

@@ -1,4 +1,3 @@
-var game = game || {};
 game.bot = (function (that) {
     'use strict';
 

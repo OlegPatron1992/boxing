@@ -1,4 +1,3 @@
-var game = game || {};
 game.config = (function (that) {
     'use strict';
 

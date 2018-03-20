@@ -1,12 +1,9 @@
-var game = game || {};
-game.configureSceneSelectMode = function (scene) {
+game.on('init', function () {
     'use strict';
 
-    scene.onShow = function () {
-        if (game.control.isEnabled()) {
+    var scene;
 
-        }
-    };
+    scene = game.scenery.getScene('select-mode');
 
     scene.actionPlayerVsBot = function () {
         if (!game.main.isStopped()) {
@@ -27,4 +24,4 @@ game.configureSceneSelectMode = function (scene) {
         game.main.run();
         game.scenery.showScene('game');
     };
-};
+});

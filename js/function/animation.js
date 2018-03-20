@@ -1,4 +1,3 @@
-var game = game || {};
 game.createAnimation = function () {
     return (function (that) {
         that.increase = true;

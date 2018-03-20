@@ -1,4 +1,3 @@
-var game = game || {};
 game.keyboard = (function (that) {
     'use strict';
 

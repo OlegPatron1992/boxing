@@ -1,8 +1,7 @@
-var game = game || {};
 game.drawer = (function (that) {
     'use strict';
 
-    that.holder = document.getElementById('canvas');
+    that.holder = document.getElementById(game.prefix + '-canvas');
     that.canvasContext = that.holder.getContext('2d');
     that.baseSize = null;
     that.unitSize = null;

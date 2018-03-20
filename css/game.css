@@ -1,4 +1,4 @@
-#game {
+#game-main {
     position: relative;
     width: 100%;
     height: 100%;
@@ -6,7 +6,7 @@
     overflow: hidden;
 }
 
-#game * {
+#game-main * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -15,12 +15,12 @@
     line-height: normal;
 }
 
-#game #game-content {
+#game-main #game-content {
     position: relative;
     margin: auto auto;
 }
 
-#game #drawer-container {
+#game-main #game-drawer-container {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -28,12 +28,12 @@
     top: 0;
 }
 
-#game #drawer-container canvas {
+#game-main #game-drawer-container canvas {
     width: 100%;
     height: 100%;
 }
 
-#game #scenery-container {
+#game-main #game-scenery-container {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -41,12 +41,12 @@
     top: 0;
 }
 
-#game #scenery-container div.scene {
+#game-main #game-scenery-container div.scene {
     width: 100%;
     height: 100%;
 }
 
-#game #scenery-container div.scene div.mask {
+#game-main #game-scenery-container div.scene div.mask {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -58,14 +58,14 @@
     background-color: #000000;
 }
 
-#game #scenery-container div.scene div.content {
+#game-main #game-scenery-container div.scene div.content {
     position: absolute;
     width: 100%;
     left: 0;
     top: 10%;
 }
 
-#game div.button {
+#game-main div.button {
     text-align: center;
     width: 50%;
     margin: 0 auto 5% auto;
@@ -79,11 +79,11 @@
     line-height: normal;
 }
 
-#game div.button:hover {
+#game-main div.button:hover {
     background: #0561cd;
 }
 
-#game div.title {
+#game-main div.title {
     width: 50%;
     margin: 0 auto 5% auto;
     color: #ffffff;
@@ -94,11 +94,11 @@
     text-align: center;
 }
 
-#game div.button.control-button {
+#game-main div.button.control-button {
     margin: 0 auto 1% auto;
 }
 
-#game div.button span.value {
+#game-main div.button span.value {
     border: 1ex solid transparent;
     -webkit-border-radius: 10%;
     -moz-border-radius: 10%;
@@ -108,25 +108,25 @@
     background: #ffffff;
 }
 
-#game div.button.active {
+#game-main div.button.active {
     color: #0561cd;
     background: #ffffff;
 }
 
-#game div.button.active span.value {
+#game-main div.button.active span.value {
     color: #ffffff;
     background: #0561cd;
 }
 
-#game .scene .button-group {
+#game-main .scene .button-group {
     margin: 0 auto 5% auto;
 }
 
-#game .scene .button-group .button {
+#game-main .scene .button-group .button {
     margin-bottom: 2%;
 }
 
-#game #game-loading {
+#game-main #game-loading {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -134,7 +134,7 @@
     margin-top: -50px;
 }
 
-#game #game-loading .loader {
+#game-main #game-loading .loader {
     border: 16px solid #f3f3f3;
     border-top: 16px solid #0561cd;
     -webkit-border-radius: 50%;
@@ -154,7 +154,7 @@
     }
 }
 
-#game #game-control {
+#game-main #game-control {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -162,7 +162,7 @@
     top: 0;
 }
 
-#game div.touch-button {
+#game-main div.touch-button {
     position: absolute;
     border: 0.5ex solid #ffffff;
     opacity: 0.8;
@@ -176,18 +176,18 @@
     background-repeat: no-repeat;
 }
 
-#game #button-move {
+#game-main #game-button-move {
     background-image: url("../img/control/move.png");
 }
 
-#game #button-attack {
+#game-main #game-button-attack {
     background-image: url("../img/control/attack.png");
 }
 
-#game #button-block {
+#game-main #game-button-block {
     background-image: url("../img/control/block.png");
 }
 
-#game #button-pause {
+#game-main #game-button-pause {
     background-image: url("../img/control/pause.png");
 }

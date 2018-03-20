@@ -1,4 +1,3 @@
-var game = game || {};
 game.sound = (function (that) {
     'use strict';
 
@@ -13,7 +12,7 @@ game.sound = (function (that) {
     };
 
     that._registerSound = function (soundName) {
-        that._sounds[soundName] = document.getElementById('sound-' + soundName);
+        that._sounds[soundName] = document.getElementById(game.prefix + '-sound-' + soundName);
     };
 
     that.configure = function () {
