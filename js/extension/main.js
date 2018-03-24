@@ -82,14 +82,14 @@ game.main = (function (that) {
                 that._drawerRequest = null;
             });
         }
-        that._gameTimeout = setTimeout(that._gameLoop, 1000 / 40);
+        that._gameTimeout = setTimeout(that._gameLoop, 1000 / 30);
     };
 
     that._botLoop = function () {
         if (!that.isFrozen()) {
             game.bot.process();
         }
-        that._botTimeout = setTimeout(that._botLoop, 1000 / 10);
+        that._botTimeout = setTimeout(that._botLoop, 1000 / 5);
     };
 
     that.configure = function () {
