@@ -29,10 +29,6 @@ game.main = (function (that) {
             clearTimeout(that._botTimeout);
             that._botTimeout = null;
         }
-        if (that._drawerRequest) {
-            game.util.cancelAnimationFrame(that._drawerRequest);
-            that._drawerRequest = null;
-        }
         if (that._gameTimeout) {
             clearTimeout(that._gameTimeout);
             that._gameTimeout = null;
@@ -61,7 +57,6 @@ game.main = (function (that) {
             game.control.show()
         }
         that._gameLoop();
-        that._drawLoop();
         if (game.bot.isEnabled()) {
             that._botLoop();
         }
@@ -81,6 +76,12 @@ game.main = (function (that) {
 
     that._gameLoop = function () {
         game.manager.tickPlayers();
+        if (that._drawerRequest == null) {
+            that._drawerRequest = game.util.requestAnimationFrame(function () {
+                game.drawer.draw();
+                that._drawerRequest = null;
+            });
+        }
         that._gameTimeout = setTimeout(that._gameLoop, 1000 / 40);
     };
 
@@ -89,11 +90,6 @@ game.main = (function (that) {
             game.bot.process();
         }
         that._botTimeout = setTimeout(that._botLoop, 1000 / 10);
-    };
-
-    that._drawLoop = function () {
-        game.drawer.draw();
-        that._drawerRequest = game.util.requestAnimationFrame(that._drawLoop);
     };
 
     that.configure = function () {

@@ -4,10 +4,10 @@ var minify = require('gulp-minify');
 
 gulp.task('default', function () {
     gulp.src(['./js/game.js', './js/extension/*.js', './js/function/*.js', './js/callback/*.js'])
-        .pipe(concat('all.js'))
+        .pipe(concat('game.js'))
         .pipe(gulp.dest('./dist/'));
 
-    gulp.src('./dist/all.js')
+    gulp.src('./dist/game.js')
         .pipe(minify({
             ext: {
                 min: '.min.js'
