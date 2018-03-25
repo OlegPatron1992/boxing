@@ -29,6 +29,7 @@ game.sound = (function (that) {
 
     that.play = function (soundName) {
         if (that._enabled) {
+            that._sounds[soundName].muted = false;
             that._sounds[soundName].currentTime = 0;
             that._sounds[soundName].play();
         }
