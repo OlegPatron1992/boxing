@@ -1,8 +1,14 @@
+@font-face {
+    font-family: MotionControl;
+    font-weight: bold;
+    src: url('../font/MotionControl-Bold.otf');
+}
+
 html, body {
     width: 100%;
     height: 100%;
-    font-size: 2vh;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 3vh;
+    font-family: MotionControl;
 }
 
 * {

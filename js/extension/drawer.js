@@ -283,7 +283,7 @@ game.drawer = (function (that) {
             that.baseSize * 80, that.baseSize * 40
         );
 
-        that.canvasContext.font = that.baseSize * 35 + 'px Arial';
+        that.canvasContext.font = that.baseSize * 50 + 'px MotionControl';
         that.canvasContext.fillStyle = that.colors.border;
         that.canvasContext.textAlign = 'center';
         that.canvasContext.fillText(game.player1.score, that.ringSize / 2 - that.baseSize * 20, that.baseSize * 35);
@@ -341,7 +341,7 @@ game.drawer = (function (that) {
             that.ringSize * 0.8, that.ringSize * 0.8
         );
 
-        that.canvasContext.font = that.baseSize * 150 + 'px Arial';
+        that.canvasContext.font = that.baseSize * 200 + 'px MotionControl';
         that.canvasContext.fillStyle = that.colors.border;
         that.canvasContext.textAlign = 'center';
         that.canvasContext.fillText(3 - game.manager.roundResetSeconds, that.ringSize * 0.5, that.ringSize * 0.6);
