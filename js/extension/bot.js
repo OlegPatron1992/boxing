@@ -15,10 +15,15 @@ game.bot = (function (that) {
             if (game.player1.action.is('attack')) {
                 game.player2.control.setBlock(true);
             } else {
-                if (!game.player2.action.is('attack') && game.player2.stamina < 50) {
-                    game.player2.control.setBlock(true);
-                } else {
-                    game.player2.control.setAttack(true);
+                switch (true) {
+                    case !game.player2.action.is('attack') && game.player2.stamina >= 50:
+                        game.player2.control.setAttack(true);
+                        break;
+                    case game.player2.action.is('attack'):
+                        break;
+                    default:
+                        game.player2.control.setBlock(true);
+                        break;
                 }
             }
         } else {
