@@ -90,8 +90,23 @@ game.manager = (function (that) {
             if (!unit.action.is(unit.control.getAction())) {
                 unit.action.reset();
                 unit.action.set(unit.control.getAction());
+                if (unit.action.is('attack')) {
+                    if (unit.control.isMoving('left')) {
+                        unit.action.setType('left');
+                    } else {
+                        unit.action.setType('right');
+                    }
+                }
             } else {
                 unit.action.tick();
+            }
+        }
+
+        if (unit.action.is('block')) {
+            if (unit.control.isMoving('left')) {
+                unit.action.setType('left');
+            } else {
+                unit.action.setType('right');
             }
         }
 

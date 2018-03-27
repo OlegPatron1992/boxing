@@ -1,19 +1,28 @@
 game.createAction = function () {
     return (function (that) {
+        that.action = null;
         that.type = null;
         that.animation = null;
         that.increasing = true;
 
-        that.set = function (type) {
-            that.type = type;
+        that.set = function (action) {
+            that.action = action;
         };
 
         that.get = function () {
-            return that.type;
+            return that.action;
         };
 
-        that.is = function (type) {
-            return that.type == type;
+        that.is = function (action) {
+            return that.action == action;
+        };
+
+        that.setType = function (type) {
+            that.type = type;
+        };
+
+        that.getType = function () {
+            return that.type;
         };
 
         that.setAnimation = function (animation) {
@@ -42,7 +51,8 @@ game.createAction = function () {
         };
 
         that.setDefaults = function () {
-            that.type = 'idle';
+            that.action = 'idle';
+            that.type = null;
             that.increasing = true;
         };
 

@@ -71,6 +71,10 @@ game.createControl = function () {
             return 'idle';
         };
 
+        that.isMoving = function (direction) {
+            return that.move.indexOf(direction) > -1;
+        };
+
         that.cancelMove = function () {
             that.move = [];
         };
