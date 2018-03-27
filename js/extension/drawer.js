@@ -132,40 +132,40 @@ game.drawer = (function (that) {
 
         that.canvasContext.lineWidth = that.baseSize * 2;
 
-        switch (unit.action) {
+        switch (unit.action.get()) {
             case 'block':
-                that._drawArm(-that.unitSize, -0.1 * unit.animation.getValue() * that.unitSize);
-                that._drawArm(that.unitSize, 0.2 * unit.animation.getValue() * that.unitSize);
+                that._drawArm(-that.unitSize, -0.1 * unit.action.getValue() * that.unitSize);
+                that._drawArm(that.unitSize, 0.2 * unit.action.getValue() * that.unitSize);
                 that._drawHead();
-                that._drawBrow(unit.animation.getValue());
-                that._drawGlove(-(0.7 - 0.1 * unit.animation.getValue()) * that.unitSize, (1.1 + 0.1 * unit.animation.getValue()) * that.unitSize, config);
-                that._drawGlove((0.8 + 0.1 * unit.animation.getValue()) * that.unitSize, (0.9 - 0.1 * unit.animation.getValue()) * that.unitSize, config);
+                that._drawBrow(unit.action.getValue());
+                that._drawGlove(-(0.7 - 0.1 * unit.action.getValue()) * that.unitSize, (1.1 + 0.1 * unit.action.getValue()) * that.unitSize, config);
+                that._drawGlove((0.8 + 0.1 * unit.action.getValue()) * that.unitSize, (0.9 - 0.1 * unit.action.getValue()) * that.unitSize, config);
                 break;
             case 'attack':
-                that._drawArm(-that.unitSize, 0.2 * unit.animation.getValue() * that.unitSize);
-                that._drawArm(that.unitSize, -0.2 * unit.animation.getValue() * that.unitSize);
-                that._drawGlove(-(0.7 - 0.5 * unit.animation.getValue()) * that.unitSize, (1.1 + 2 * unit.animation.getValue()) * that.unitSize, config);
-                that._drawGlove((0.8 + 0.1 * unit.animation.getValue()) * that.unitSize, (0.9 - 0.5 * unit.animation.getValue()) * that.unitSize, config);
+                that._drawArm(-that.unitSize, 0.2 * unit.action.getValue() * that.unitSize);
+                that._drawArm(that.unitSize, -0.2 * unit.action.getValue() * that.unitSize);
+                that._drawGlove(-(0.7 - 0.5 * unit.action.getValue()) * that.unitSize, (1.1 + 2 * unit.action.getValue()) * that.unitSize, config);
+                that._drawGlove((0.8 + 0.1 * unit.action.getValue()) * that.unitSize, (0.9 - 0.5 * unit.action.getValue()) * that.unitSize, config);
                 that._drawHead();
-                that._drawBrow(unit.animation.getValue());
+                that._drawBrow(unit.action.getValue());
                 break;
             case 'idle':
-                that._drawGlove(-that.unitSize, (-0.5 + unit.animation.getValue()) * 0.1 * that.unitSize, config);
-                that._drawGlove(that.unitSize, (0.5 - unit.animation.getValue()) * 0.1 * that.unitSize, config);
+                that._drawGlove(-that.unitSize, (-0.5 + unit.action.getValue()) * 0.1 * that.unitSize, config);
+                that._drawGlove(that.unitSize, (0.5 - unit.action.getValue()) * 0.1 * that.unitSize, config);
                 that._drawArm(-that.unitSize, 0);
                 that._drawArm(that.unitSize, 0);
                 that._drawHead();
-                that._drawBrow(unit.animation.getValue());
+                that._drawBrow(unit.action.getValue());
                 break;
             case 'move':
-                that._drawFoot(-that.unitSize * 0.5, (-0.5 + unit.animation.getValue()) * 2 * that.unitSize);
-                that._drawFoot(that.unitSize * 0.5, (0.5 - unit.animation.getValue()) * 2 * that.unitSize);
-                that._drawGlove(-that.unitSize, (-0.5 + unit.animation.getValue()) * 0.1 * that.unitSize, config);
-                that._drawGlove(that.unitSize, (0.5 - unit.animation.getValue()) * 0.1 * that.unitSize, config);
+                that._drawFoot(-that.unitSize * 0.5, (-0.5 + unit.action.getValue()) * 2 * that.unitSize);
+                that._drawFoot(that.unitSize * 0.5, (0.5 - unit.action.getValue()) * 2 * that.unitSize);
+                that._drawGlove(-that.unitSize, (-0.5 + unit.action.getValue()) * 0.1 * that.unitSize, config);
+                that._drawGlove(that.unitSize, (0.5 - unit.action.getValue()) * 0.1 * that.unitSize, config);
                 that._drawArm(-that.unitSize, 0);
                 that._drawArm(that.unitSize, 0);
                 that._drawHead();
-                that._drawBrow(unit.animation.getValue());
+                that._drawBrow(unit.action.getValue());
                 break;
         }
 

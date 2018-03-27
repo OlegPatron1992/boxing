@@ -12,10 +12,10 @@ game.bot = (function (that) {
 
     that.process = function () {
         if (game.manager.canAttack()) {
-            if (game.player1.action == 'attack') {
+            if (game.player1.action.is('attack')) {
                 game.player2.control.setBlock(true);
             } else {
-                if (!(game.player2.animation.increase && game.player2.action == 'attack') && game.player2.stamina < 50) {
+                if (!game.player2.action.is('attack') && game.player2.stamina < 50) {
                     game.player2.control.setBlock(true);
                 } else {
                     game.player2.control.setAttack(true);

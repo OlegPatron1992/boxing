@@ -8,7 +8,6 @@ game.createUnit = function () {
         };
         that.health = null;
         that.stamina = null;
-        that.animation = null;
         that.control = null;
         that.effects = [];
         that.action = null;
@@ -31,12 +30,12 @@ game.createUnit = function () {
             that.effects = [];
         };
 
-        that.setAnimation = function (animation) {
-            that.animation = animation;
-        };
-
         that.setControl = function (control) {
             that.control = control;
+        };
+
+        that.setAction = function (action) {
+            that.action = action;
         };
 
         that.setDefaults = function () {
@@ -77,8 +76,8 @@ game.createUnit = function () {
             that.id = id;
         };
 
-        that.setAnimation(game.createAnimation());
         that.setControl(game.createControl());
+        that.setAction(game.createAction());
         that.setDefaults();
 
         return that;

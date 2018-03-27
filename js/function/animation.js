@@ -1,38 +1,20 @@
 game.createAnimation = function () {
     return (function (that) {
-        that.increase = true;
-        that.duration = game.config.animation.duration;
+        that.duration = null;
         that.step = 0;
         that.value = null;
 
-        that.toggle = function () {
-            if (that.increase) {
-                that.increase = false;
-            } else {
-                that.increase = true;
-            }
+        that.isFinished = function () {
+            return that.value >= 1;
         };
 
         that.tick = function () {
-            if (that.increase) {
-                that.step++;
-            } else {
-                that.step--;
-            }
-            if (that.step > that.duration) {
-                that.step = that.duration;
-                that.toggle();
-            }
-            if (that.step < 0) {
-                that.step = 0;
-                that.toggle();
-            }
+            that.step++;
             that.value = this.step / this.duration;
         };
 
         that.reset = function () {
             that.step = 0;
-            that.increase = true;
             that.value = 0;
         };
 
@@ -43,6 +25,8 @@ game.createAnimation = function () {
         that.setDuration = function (duration) {
             that.duration = duration;
         };
+
+        that.setDuration(game.config.animation.duration);
 
         return that;
     })({});

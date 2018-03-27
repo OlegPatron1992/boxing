@@ -32,7 +32,7 @@ game.manager = (function (that) {
                 that.round();
             }
         }
-        if (game.player1.action == 'move' || game.player2.action == 'move') {
+        if (game.player1.action.is('move') || game.player2.action.is('move')) {
             that._distance = null;
             that._updateAngle(game.player1, game.player2);
         }
@@ -40,7 +40,7 @@ game.manager = (function (that) {
 
     that._resetUnit = function (unit) {
         unit.setDefaults();
-        unit.animation.reset();
+        unit.action.reset();
         unit.control.makeIdle();
         that._place(unit, game.config.respawn[unit.id]);
         unit.resetEffects();
@@ -79,37 +79,35 @@ game.manager = (function (that) {
 
     that.process = function (unit, altUnit) {
         if (game.main.isFrozen()) {
-            if (unit.action != 'idle') {
-                unit.action = 'idle';
-                unit.animation.reset();
+            if (!unit.action.is('idle')) {
+                unit.action.reset();
+                unit.action.set('idle');
             } else {
-                unit.animation.tick();
+                unit.action.tick();
             }
 
             unit.restoreHealth();
         } else {
-            if (unit.action != unit.control.getAction()) {
-                unit.action = unit.control.getAction();
-                unit.animation.reset();
+            if (!unit.action.is(unit.control.getAction())) {
+                unit.action.reset();
+                unit.action.set(unit.control.getAction());
             } else {
-                unit.animation.tick();
+                unit.action.tick();
             }
         }
 
         unit.restoreStamina();
 
-        switch (unit.action) {
+        switch (unit.action.get()) {
             case 'move':
                 that.move(unit, altUnit);
                 break;
             case 'attack':
-                if (unit.animation.increase) {
-                    unit.fatigue(game.config.stamina.attack);
-                    if (unit.stamina > 0) {
-                        that.attack(unit, altUnit);
-                    } else {
-                        unit.animation.toggle();
-                    }
+                unit.fatigue(game.config.stamina.attack);
+                if (unit.stamina > 0) {
+                    that.attack(unit, altUnit);
+                } else {
+                    unit.action.reset();
                 }
                 break;
         }
@@ -135,23 +133,23 @@ game.manager = (function (that) {
 
         if (that.canAttack()) {
             temp = that._getDistance() / game.config.attack.distance;
-            if (unit.animation.getValue() >= temp) {
-                damage = game.config.attack.damage * temp * game.config.attack.multiplier[altUnit.action];
+            if (unit.action.getValue() >= temp) {
+                damage = game.config.attack.damage * temp * game.config.attack.multiplier[altUnit.action.get()];
                 altUnit.damage(damage);
                 effect = game.createEffect();
                 effect.setType('damage');
                 effect.position = altUnit.position;
                 altUnit.addEffect(effect);
-                unit.animation.reset();
+                unit.action.reset();
                 switch (true) {
                     case !altUnit.isAlive():
                         unit.score++;
                         game.sound.play('attack-dead');
                         break;
-                    case altUnit.action == 'move':
+                    case altUnit.action.is('move'):
                         game.sound.play('attack-move');
                         break;
-                    case altUnit.action == 'block':
+                    case altUnit.action.is('block'):
                         game.sound.play('attack-block');
                         break;
                     default:

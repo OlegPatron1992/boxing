@@ -1,4 +1,4 @@
-this.game = this.game || {};
+var game = game || {};
 (function (that) {
     'use strict';
 
@@ -50,4 +50,4 @@ this.game = this.game || {};
 
         that.scenery.showScene('main-menu');
     };
-})(this.game);
+})(game);

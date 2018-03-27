@@ -22,7 +22,7 @@ game.config = (function (that) {
 
     that.attack = {
         distance: 90,
-        damage: 50,
+        damage: 30,
         multiplier: {
             idle: 0.8,
             block: 0.5,
