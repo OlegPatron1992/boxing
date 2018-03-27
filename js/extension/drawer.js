@@ -134,15 +134,25 @@ game.drawer = (function (that) {
 
         switch (unit.action.get()) {
             case 'block':
-                that._drawArm(-that.unitSize, -0.1 * unit.action.getValue() * that.unitSize);
-                that._drawArm(that.unitSize, 0.2 * unit.action.getValue() * that.unitSize);
+                if (unit.action.getType() == 'left') {
+                    that._drawArm(that.unitSize, -0.1 * unit.action.getValue() * that.unitSize);
+                    that._drawArm(-that.unitSize, 0.2 * unit.action.getValue() * that.unitSize);
+                } else {
+                    that._drawArm(-that.unitSize, -0.1 * unit.action.getValue() * that.unitSize);
+                    that._drawArm(that.unitSize, 0.2 * unit.action.getValue() * that.unitSize);
+                }
                 that._drawHead();
                 that._drawBrow(unit.action.getValue());
-                that._drawGlove(-(0.7 - 0.1 * unit.action.getValue()) * that.unitSize, (1.1 + 0.1 * unit.action.getValue()) * that.unitSize, config);
-                that._drawGlove((0.8 + 0.1 * unit.action.getValue()) * that.unitSize, (0.9 - 0.1 * unit.action.getValue()) * that.unitSize, config);
+                if (unit.action.getType() == 'left') {
+                    that._drawGlove((0.7 - 0.1 * unit.action.getValue()) * that.unitSize, (1.1 + 0.1 * unit.action.getValue()) * that.unitSize, config);
+                    that._drawGlove(-(0.8 + 0.1 * unit.action.getValue()) * that.unitSize, (0.9 - 0.1 * unit.action.getValue()) * that.unitSize, config);
+                } else {
+                    that._drawGlove(-(0.7 - 0.1 * unit.action.getValue()) * that.unitSize, (1.1 + 0.1 * unit.action.getValue()) * that.unitSize, config);
+                    that._drawGlove((0.8 + 0.1 * unit.action.getValue()) * that.unitSize, (0.9 - 0.1 * unit.action.getValue()) * that.unitSize, config);
+                }
                 break;
             case 'attack':
-                if(unit.action.getType() == 'left') {
+                if (unit.action.getType() == 'left') {
                     that._drawArm(that.unitSize, 0.2 * unit.action.getValue() * that.unitSize);
                     that._drawArm(-that.unitSize, -0.2 * unit.action.getValue() * that.unitSize);
                     that._drawGlove((0.7 - 0.5 * unit.action.getValue()) * that.unitSize, (1.1 + 2 * unit.action.getValue()) * that.unitSize, config);
