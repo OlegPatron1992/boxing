@@ -145,7 +145,14 @@ game.manager = (function (that) {
             if (that.canAttack()) {
                 temp = that._getDistance() / game.config.attack.distance;
                 if (unit.action.getValue() >= temp) {
-                    damage = game.config.attack.damage * temp * game.config.attack.multiplier[altUnit.action.get()];
+                    damage = game.config.attack.damage *
+                        temp *
+                        game.config.attack.multiplier.action[altUnit.action.get()];
+                    if (unit.action.getType() == altUnit.action.getType()) {
+                        damage *= game.config.attack.multiplier.type.same;
+                    } else {
+                        damage *= game.config.attack.multiplier.type.different;
+                    }
                     altUnit.damage(damage);
                     effect = game.createEffect();
                     effect.setType('damage');
