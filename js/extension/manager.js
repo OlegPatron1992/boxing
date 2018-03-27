@@ -81,7 +81,6 @@ game.manager = (function (that) {
         if (game.main.isFrozen()) {
             if (!unit.action.is('idle')) {
                 unit.action.reset();
-                unit.action.set('idle');
             } else {
                 unit.action.tick();
             }
