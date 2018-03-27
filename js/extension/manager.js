@@ -102,12 +102,7 @@ game.manager = (function (that) {
                 that.move(unit, altUnit);
                 break;
             case 'attack':
-                unit.fatigue(game.config.stamina.attack);
-                if (unit.stamina > 0) {
-                    that.attack(unit, altUnit);
-                } else {
-                    unit.action.reset();
-                }
+                that.attack(unit, altUnit);
                 break;
         }
 
@@ -130,32 +125,37 @@ game.manager = (function (that) {
             damage,
             effect;
 
-        if (that.canAttack()) {
-            temp = that._getDistance() / game.config.attack.distance;
-            if (unit.action.getValue() >= temp) {
-                damage = game.config.attack.damage * temp * game.config.attack.multiplier[altUnit.action.get()];
-                altUnit.damage(damage);
-                effect = game.createEffect();
-                effect.setType('damage');
-                effect.position = altUnit.position;
-                altUnit.addEffect(effect);
-                unit.action.reset();
-                switch (true) {
-                    case !altUnit.isAlive():
-                        unit.score++;
-                        game.sound.play('attack-dead');
-                        break;
-                    case altUnit.action.is('move'):
-                        game.sound.play('attack-move');
-                        break;
-                    case altUnit.action.is('block'):
-                        game.sound.play('attack-block');
-                        break;
-                    default:
-                        game.sound.play('attack-base');
-                        break;
+        unit.fatigue(game.config.stamina.attack);
+        if (unit.stamina > 0) {
+            if (that.canAttack()) {
+                temp = that._getDistance() / game.config.attack.distance;
+                if (unit.action.getValue() >= temp) {
+                    damage = game.config.attack.damage * temp * game.config.attack.multiplier[altUnit.action.get()];
+                    altUnit.damage(damage);
+                    effect = game.createEffect();
+                    effect.setType('damage');
+                    effect.position = altUnit.position;
+                    altUnit.addEffect(effect);
+                    unit.action.reset();
+                    switch (true) {
+                        case !altUnit.isAlive():
+                            unit.score++;
+                            game.sound.play('attack-dead');
+                            break;
+                        case altUnit.action.is('move'):
+                            game.sound.play('attack-move');
+                            break;
+                        case altUnit.action.is('block'):
+                            game.sound.play('attack-block');
+                            break;
+                        default:
+                            game.sound.play('attack-base');
+                            break;
+                    }
                 }
             }
+        } else {
+            unit.action.reset();
         }
     };
 
