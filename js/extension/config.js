@@ -17,7 +17,7 @@ game.config = (function (that) {
     };
 
     that.animation = {
-        duration: 20
+        duration: 15
     };
 
     that.attack = {
@@ -51,8 +51,8 @@ game.config = (function (that) {
     };
 
     that.speed = {
-        straight: 3,
-        multiple: 3 / Math.sqrt(2)
+        straight: 2,
+        multiple: 2 / Math.sqrt(2)
     };
 
     return that;
