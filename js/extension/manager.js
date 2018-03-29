@@ -186,7 +186,7 @@ game.manager = (function (that) {
             x,
             y;
 
-        speed = unit.control.move.length > 1 ? game.config.speed.multiple : game.config.speed.straight;
+        speed = unit.control.move.length > 1 ? game.config.speed / Math.sqrt(2) : game.config.speed;
 
         x = unit.position.x;
         y = unit.position.y;
@@ -266,7 +266,7 @@ game.manager = (function (that) {
     that.getMoveDirections = function (dX, dY) {
         var moveDirections = [];
 
-        if (Math.abs(dX) > game.config.speed.straight) {
+        if (Math.abs(dX) > game.config.speed) {
             if (dX < 0) {
                 moveDirections.push('right');
             } else {
@@ -274,7 +274,7 @@ game.manager = (function (that) {
             }
         }
 
-        if (Math.abs(dY) > game.config.speed.straight) {
+        if (Math.abs(dY) > game.config.speed) {
             if (dY < 0) {
                 moveDirections.push('down');
             } else {

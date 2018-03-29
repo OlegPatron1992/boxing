@@ -50,10 +50,7 @@ game.config = (function (that) {
         }
     };
 
-    that.speed = {
-        straight: 2,
-        multiple: 2 / Math.sqrt(2)
-    };
+    that.speed = 3;
 
     return that;
 })({});
