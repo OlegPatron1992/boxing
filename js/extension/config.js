@@ -17,7 +17,7 @@ game.config = (function (that) {
     };
 
     that.animation = {
-        duration: 15
+        duration: 20
     };
 
     that.attack = {
