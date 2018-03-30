@@ -13,7 +13,7 @@ game.drawer = (function (that) {
         healthBar: '#cd0001',
         staminaBar: '#108920',
         damageEffect: '#cd1111',
-        player1: '#fff300',
+        player1: '#fff34c',
         player2: '#000eff',
         border: '#141414'
     };
