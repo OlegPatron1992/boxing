@@ -208,11 +208,11 @@ game.manager = (function (that) {
             }
         });
 
-        x = Math.min(game.config.size.ring, x);
-        x = Math.max(0, x);
+        x = Math.min(game.config.size.ring - game.config.size.unit, x);
+        x = Math.max(game.config.size.unit, x);
 
-        y = Math.min(game.config.size.ring, y);
-        y = Math.max(0, y);
+        y = Math.min(game.config.size.ring - game.config.size.unit, y);
+        y = Math.max(game.config.size.unit, y);
 
         if (Math.pow(x - altUnit.position.x, 2) + Math.pow(y - altUnit.position.y, 2) >= Math.pow(game.config.size.unit * 2, 2)) {
             unit.position.x = x;
