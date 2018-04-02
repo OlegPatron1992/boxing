@@ -39,13 +39,36 @@
                     <div class="title">
                         Select Mode
                     </div>
-                    <div class="button" data-action="player-vs-bot"
-                         onclick="game.scenery.callSceneAction('select-mode', this.getAttribute('data-action'));">
+                    <div class="button"
+                         onclick="game.scenery.showScene('select-bot-level');">
                         Player VS Bot
                     </div>
                     <div class="button" data-action="player-vs-player"
                          onclick="game.scenery.callSceneAction('select-mode',  this.getAttribute('data-action'));">
                         Player VS Player
+                    </div>
+                    <div class="button" onclick="game.scenery.back();">Back</div>
+                </div>
+            </div>
+            <div id="game-scene-select-bot-level" class="scene">
+                <div class="mask"></div>
+                <div class="content">
+                    <div class="title">
+                        Select Bot Level
+                    </div>
+                    <div class="button-group">
+                        <div class="button" data-action="easy"
+                             onclick="game.scenery.callSceneAction('select-bot-level', this.getAttribute('data-action'));">
+                            Easy
+                        </div>
+                        <div class="button" data-action="normal"
+                             onclick="game.scenery.callSceneAction('select-bot-level', this.getAttribute('data-action'));">
+                            Normal
+                        </div>
+                        <div class="button" data-action="hard"
+                             onclick="game.scenery.callSceneAction('select-bot-level', this.getAttribute('data-action'));">
+                            Hard
+                        </div>
                     </div>
                     <div class="button" onclick="game.scenery.back();">Back</div>
                 </div>
@@ -188,7 +211,7 @@
         <div id="game-button-pause" class="touch-button"></div>
     </div>
 </div>
-<script type="text/javascript" src="./dist/game.min.js"></script>
+<script type="text/javascript" src="./dist/game.js"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         game.init();

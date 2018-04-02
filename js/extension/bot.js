@@ -2,6 +2,7 @@ game.bot = (function (that) {
     'use strict';
 
     that._enabled = null;
+    that._level = null;
 
     that.setEnabled = function (enabled) {
         that._enabled = enabled;
@@ -10,7 +11,17 @@ game.bot = (function (that) {
         return that._enabled;
     };
 
-    that.process = function () {
+    that.easy = function () {
+        that._level = 'e';
+    };
+    that.normal = function () {
+        that._level = 'n';
+    };
+    that.hard = function () {
+        that._level = 'h';
+    };
+
+    that._easy = function () {
         if (game.manager.canAttack()) {
             if (game.player1.action.is('attack')) {
                 game.player2.control.setBlock(true);
@@ -28,6 +39,45 @@ game.bot = (function (that) {
             }
         } else {
             game.manager.makeMove(game.player2, game.player1);
+        }
+    };
+
+    that._normal = function () {
+        if (game.manager.canAttack()) {
+            if (game.player1.action.is('attack')) {
+                game.player2.control.setBlock(true);
+            } else {
+                switch (true) {
+                    case !game.player2.action.is('attack') && game.player2.stamina >= 50:
+                        game.player2.control.setAttack(true);
+                        break;
+                    case game.player2.action.is('attack'):
+                        break;
+                    default:
+                        game.player2.control.setBlock(true);
+                        break;
+                }
+            }
+        } else {
+            game.manager.makeMove(game.player2, game.player1);
+        }
+    };
+
+    that._hard = function () {
+
+    };
+
+    that.process = function () {
+        switch (that._level) {
+            case 'e':
+                that._easy();
+                break;
+            case 'n':
+                that._normal();
+                break;
+            case 'h':
+                that._hard();
+                break;
         }
     };
 
