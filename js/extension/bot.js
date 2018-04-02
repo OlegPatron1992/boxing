@@ -14,9 +14,6 @@ game.bot = (function (that) {
     that.easy = function () {
         that._level = 'e';
     };
-    that.normal = function () {
-        that._level = 'n';
-    };
     that.hard = function () {
         that._level = 'h';
     };
@@ -25,9 +22,6 @@ game.bot = (function (that) {
         switch (that._level) {
             case 'e':
                 that._easy();
-                break;
-            case 'n':
-                that._normal();
                 break;
             case 'h':
                 that._hard();
@@ -56,7 +50,7 @@ game.bot = (function (that) {
         }
     };
 
-    that._normal = function () {
+    that._hard = function () {
         if (game.player2.action.is('attack')) {
             if (!game.manager.canAttack()) {
                 game.manager.makeMoveIn(game.player2, game.player1);
@@ -78,10 +72,6 @@ game.bot = (function (that) {
                 game.player2.control.setBlock(true);
             }
         }
-    };
-
-    that._hard = function () {
-
     };
 
     return that;

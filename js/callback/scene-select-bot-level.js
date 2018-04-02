@@ -19,10 +19,6 @@ game.on('init', function () {
         game.bot.easy();
         run();
     };
-    scene.actionNormal = function () {
-        game.bot.normal();
-        run();
-    };
     scene.actionHard = function () {
         game.bot.hard();
         run();
