@@ -15,6 +15,7 @@ game.scenery = (function (that) {
             'game',
             'main-menu',
             'select-mode',
+            'select-bot-level',
             'pause-menu',
             'settings',
             'settings-player1-controls',

@@ -251,11 +251,23 @@ game.manager = (function (that) {
         return that._distance;
     };
 
-    that.makeMove = function (unit, altUnit) {
+    that.makeMoveIn = function (unit, altUnit) {
         var dX, dY;
 
         dX = unit.position.x - altUnit.position.x;
         dY = unit.position.y - altUnit.position.y;
+
+        unit.control.makeIdle();
+        that.getMoveDirections(dX, dY).forEach(function (direction) {
+            unit.control.setMove(direction, true);
+        });
+    };
+
+    that.makeMoveOut = function (unit, altUnit) {
+        var dX, dY;
+
+        dX = -(unit.position.x - altUnit.position.x);
+        dY = -(unit.position.y - altUnit.position.y);
 
         unit.control.makeIdle();
         that.getMoveDirections(dX, dY).forEach(function (direction) {
