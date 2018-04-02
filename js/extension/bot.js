@@ -21,6 +21,20 @@ game.bot = (function (that) {
         that._level = 'h';
     };
 
+    that.process = function () {
+        switch (that._level) {
+            case 'e':
+                that._easy();
+                break;
+            case 'n':
+                that._normal();
+                break;
+            case 'h':
+                that._hard();
+                break;
+        }
+    };
+
     that._easy = function () {
         if (game.manager.canAttack()) {
             if (game.player1.action.is('attack')) {
@@ -38,47 +52,36 @@ game.bot = (function (that) {
                 }
             }
         } else {
-            game.manager.makeMove(game.player2, game.player1);
+            game.manager.makeMoveIn(game.player2, game.player1);
         }
     };
 
     that._normal = function () {
-        if (game.manager.canAttack()) {
-            if (game.player1.action.is('attack')) {
-                game.player2.control.setBlock(true);
-            } else {
-                switch (true) {
-                    case !game.player2.action.is('attack') && game.player2.stamina >= 50:
-                        game.player2.control.setAttack(true);
-                        break;
-                    case game.player2.action.is('attack'):
-                        break;
-                    default:
-                        game.player2.control.setBlock(true);
-                        break;
-                }
+        if (game.player2.action.is('attack')) {
+            if (!game.manager.canAttack()) {
+                game.manager.makeMoveIn(game.player2, game.player1);
             }
         } else {
-            game.manager.makeMove(game.player2, game.player1);
+            if (game.manager.canAttack()) {
+                if (game.player1.action.is('attack')) {
+                    game.manager.makeMoveOut(game.player2, game.player1);
+                } else {
+                    if (!game.player2.action.is('attack') && game.player2.stamina >= 50) {
+                        game.player2.control.setAttack(true);
+                    } else {
+                        game.manager.makeMoveOut(game.player2, game.player1);
+                    }
+                }
+            } else if (game.player2.stamina >= 50 && !game.player1.action.is('attack')) {
+                game.manager.makeMoveIn(game.player2, game.player1);
+            } else {
+                game.player2.control.setBlock(true);
+            }
         }
     };
 
     that._hard = function () {
 
-    };
-
-    that.process = function () {
-        switch (that._level) {
-            case 'e':
-                that._easy();
-                break;
-            case 'n':
-                that._normal();
-                break;
-            case 'h':
-                that._hard();
-                break;
-        }
     };
 
     return that;
