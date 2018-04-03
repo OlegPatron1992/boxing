@@ -237,8 +237,9 @@ game.manager = (function (that) {
         altUnit.position.angle = Math.PI + angle;
     };
 
-    that.canAttack = function () {
-        return that._getDistance() < game.config.attack.distance;
+    that.canAttack = function (multiplier) {
+        multiplier = multiplier || 1;
+        return that._getDistance() < game.config.attack.distance * multiplier;
     };
 
     that._getDistance = function () {

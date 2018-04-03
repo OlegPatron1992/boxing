@@ -61,6 +61,10 @@
                              onclick="game.scenery.callSceneAction('select-bot-level', this.getAttribute('data-action'));">
                             Easy
                         </div>
+                        <div class="button" data-action="normal"
+                             onclick="game.scenery.callSceneAction('select-bot-level', this.getAttribute('data-action'));">
+                            Normal
+                        </div>
                         <div class="button" data-action="hard"
                              onclick="game.scenery.callSceneAction('select-bot-level', this.getAttribute('data-action'));">
                             Hard
@@ -207,7 +211,7 @@
         <div id="game-button-pause" class="touch-button"></div>
     </div>
 </div>
-<script type="text/javascript" src="./dist/game.js"></script>
+<script type="text/javascript" src="./dist/game.min.js"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         game.init();

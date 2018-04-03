@@ -14,6 +14,9 @@ game.bot = (function (that) {
     that.easy = function () {
         that._level = 'e';
     };
+    that.normal = function () {
+        that._level = 'n';
+    };
     that.hard = function () {
         that._level = 'h';
     };
@@ -22,6 +25,9 @@ game.bot = (function (that) {
         switch (that._level) {
             case 'e':
                 that._easy();
+                break;
+            case 'n':
+                that._normal();
                 break;
             case 'h':
                 that._hard();
@@ -50,7 +56,7 @@ game.bot = (function (that) {
         }
     };
 
-    that._hard = function () {
+    that._normal = function () {
         if (game.player2.action.is('attack')) {
             if (!game.manager.canAttack()) {
                 game.manager.makeMoveIn(game.player2, game.player1);
@@ -70,6 +76,36 @@ game.bot = (function (that) {
                 game.manager.makeMoveIn(game.player2, game.player1);
             } else {
                 game.player2.control.setBlock(true);
+            }
+        }
+    };
+
+    that._hard = function () {
+        if (game.player2.action.is('attack')) {
+            if (!game.manager.canAttack()) {
+                if (!game.player1.action.is('attack') && game.player2.stamina >= 50) {
+                    game.manager.makeMoveIn(game.player2, game.player1);
+                } else {
+                    game.player2.control.setBlock(true);
+                }
+            }
+        } else {
+            if (game.player1.action.is('attack') && game.manager.canAttack()) {
+                game.manager.makeMoveOut(game.player2, game.player1);
+            } else {
+                if (game.manager.canAttack(0.8)) {
+                    if (game.player2.stamina >= 50) {
+                        game.player2.control.setAttack(true);
+                    } else {
+                        game.manager.makeMoveOut(game.player2, game.player1);
+                    }
+                } else {
+                    if (game.player2.stamina >= 50 && !game.player1.action.is('attack')) {
+                        game.manager.makeMoveIn(game.player2, game.player1);
+                    } else {
+                        game.player2.control.setBlock(true);
+                    }
+                }
             }
         }
     };
