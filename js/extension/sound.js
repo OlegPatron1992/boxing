@@ -6,7 +6,10 @@ game.sound = (function (that) {
         'attack-block': './audio/attack_block.mp3',
         'attack-dead': './audio/attack_dead.mp3',
         'attack-move': './audio/attack_move.mp3',
-        'ring-bell': './audio/ring_bell.mp3'
+        'ring-bell': './audio/ring_bell.mp3',
+        'menu-accept': './audio/menu_accept.mp3',
+        'menu-back': './audio/menu_back.mp3',
+        'menu-select': './audio/menu_select.mp3'
     };
     that._soundsBuffer = {};
     that._enabled = true;

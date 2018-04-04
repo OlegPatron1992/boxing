@@ -51,6 +51,7 @@ game.scenery = (function (that) {
         that._scenes[sceneId].onShow();
         that._scenes[sceneId].show();
         that._history.push(sceneId);
+        game.sound.play('menu-select');
     };
 
     that.callSceneAction = function (sceneId, action) {
@@ -60,6 +61,7 @@ game.scenery = (function (that) {
     that.back = function () {
         that.hideScene(that._history.pop());
         that.showScene(that._history.pop());
+        game.sound.play('menu-back');
     };
 
     return that;

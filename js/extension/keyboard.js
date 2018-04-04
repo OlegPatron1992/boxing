@@ -209,6 +209,7 @@ game.keyboard = (function (that) {
             keyHolder.innerHTML = that.map[keyCode];
             keyHolder.classList.remove('hidden');
             that.cancelChanging();
+            game.sound.play('menu-accept');
         }
     };
 
