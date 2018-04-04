@@ -4,8 +4,9 @@ game.sound = (function (that) {
     that._soundsUrl = {
         'attack-base': './audio/attack_base.mp3',
         'attack-block': './audio/attack_block.mp3',
-        'attack-dead': './audio/attack_dead.mp3',
         'attack-move': './audio/attack_move.mp3',
+        'dead1': './audio/dead1.mp3',
+        'dead2': './audio/dead2.mp3',
         'ring-bell': './audio/ring_bell.mp3',
         'menu-accept': './audio/menu_accept.mp3',
         'menu-back': './audio/menu_back.mp3',

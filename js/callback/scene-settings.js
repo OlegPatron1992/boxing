@@ -17,6 +17,7 @@ game.on('init', function () {
     scene.actionToggleAudio = function () {
         game.sound.setEnabled(!game.sound.isEnabled());
         scene._updateAudioButton();
+        game.sound.play('menu-accept');
     };
 
     scene._updateMobileModeButton = function () {
@@ -29,9 +30,11 @@ game.on('init', function () {
         if (game.control.isEnabled()) {
             game.control.configure();
         }
+        game.sound.play('menu-accept');
     };
 
     scene.actionFullscreen = function () {
         game.util.makeFullScreen(game.main.holder);
+        game.sound.play('menu-accept');
     };
 });

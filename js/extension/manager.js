@@ -30,6 +30,7 @@ game.manager = (function (that) {
         if (!game.main.isFrozen()) {
             if (!game.player2.isAlive() || !game.player1.isAlive()) {
                 that.round();
+                game.sound.play(!game.player1.isAlive() ? 'dead1' : 'dead2');
             }
         }
         if (game.player1.action.is('move') || game.player2.action.is('move')) {
@@ -153,17 +154,15 @@ game.manager = (function (that) {
                     } else {
                         damage *= game.config.attack.multiplier.type.different;
                     }
+
                     altUnit.damage(damage);
                     effect = game.createEffect();
                     effect.setType('damage');
                     effect.position = altUnit.position;
                     altUnit.addEffect(effect);
                     unit.action.reset();
+
                     switch (true) {
-                        case !altUnit.isAlive():
-                            unit.score++;
-                            game.sound.play('attack-dead');
-                            break;
                         case altUnit.action.is('move'):
                             game.sound.play('attack-move');
                             break;
@@ -173,6 +172,10 @@ game.manager = (function (that) {
                         default:
                             game.sound.play('attack-base');
                             break;
+                    }
+
+                    if (!altUnit.isAlive()) {
+                        unit.score++;
                     }
                 }
             }
