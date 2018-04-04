@@ -43,8 +43,8 @@ var game = game || {};
         that.drawer.configure();
         that.scenery.configure();
         that.manager.configure();
-        that.sound.configure();
         that.keyboard.configure();
+        that.sound.configure();
 
         that.trigger('init');
 
